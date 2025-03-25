@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DashBoard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <!-- ============Preloader============ -->
+    <div id="preloader_active">
+      <div id="loading-center">
+        <div id="loading-center-absolute">
+          <div class="object" id="object_one"></div>
+          <div class="object" id="object_two"></div>
+          <div class="object" id="object_three"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="container">
+        <nav class="navigation">
+          <ul>
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="storefront-outline"></ion-icon>
+                </span>
+                <span class="title">Niger.net</span>
+              </a>
+            </li>
+
+            <li class="hovered">
+              <a href="index.html">
+                <span class="icon">
+                  <ion-icon name="home-outline"></ion-icon>
+                </span>
+                <span class="title">Dashboard</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="products.html">
+                <span class="icon">
+                  <ion-icon name="server-outline"></ion-icon>
+                </span>
+                <span class="title">Products</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="orders.html">
+                <span class="icon">
+                  <ion-icon name="reorder-four-outline"></ion-icon>
+                </span>
+                <span class="title">Orders</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="people-outline"></ion-icon>
+                </span>
+                <span class="title">Customers</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="analytics-outline"></ion-icon>
+                </span>
+                <span class="title">Analytics and Reporting</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="chatbubble-outline"></ion-icon>
+                </span>
+                <span class="title">Messages</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <!-- <ion-icon name="repeat-outline"></ion-icon> -->
+                  <ion-icon name="reload-outline"></ion-icon>
+                </span>
+                <span class="title">Review and Return</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="settings-outline"></ion-icon>
+                </span>
+                <span class="title">Settings</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <span class="icon">
+                  <ion-icon name="log-out-outline"></ion-icon>
+                </span>
+                <span class="title">Sign Out</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <main class="main">
+          <div class="topbar">
+            <div class="toggle">
+              <ion-icon name="menu-outline"></ion-icon>
+            </div>
+
+            <div class="search">
+              <label>
+                <input type="text" placeholder="Search here" />
+                <ion-icon name="search-outline"></ion-icon>
+              </label>
+            </div>
+
+            <div class="user">
+              <img src="assets/images/me.jpg" alt="" />
+            </div>
+          </div>
+          <!-- ======================= Cards ================== -->
+          <div class="cardBox">
+            <div class="card">
+              <div>
+                <div class="numbers">1,504</div>
+                <div class="cardName">Daily Views</div>
+              </div>
+
+              <div class="iconBx">
+                <ion-icon name="eye-outline"></ion-icon>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="numbers">80</div>
+                <div class="cardName">Sales</div>
+              </div>
+
+              <div class="iconBx">
+                <ion-icon name="cart-outline"></ion-icon>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="numbers">284</div>
+                <div class="cardName">Comments</div>
+              </div>
+
+              <div class="iconBx">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+              </div>
+            </div>
+
+            <div class="card">
+              <div>
+                <div class="numbers">
+                  100.050 <span class="device">FCFA</span>
+                </div>
+                <div class="cardName">Earning</div>
+              </div>
+
+              <div class="iconBx">
+                <ion-icon name="cash-outline"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="js/base.js" type="module"></script>
+    <script src="js/index.js" type="module"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
