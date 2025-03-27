@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const productTable = document.getElementById("productTable");
   const modal = document.getElementById("custom-modal");
   const addBtn = document.getElementById("add-btn");
-  const editBtn = document.getElementById("save-btn");
+  const saveBtn = document.getElementById("save-btn");
   const deleteBtn = document.getElementById("delete-btn");
   const otherSpecs = document.getElementById("other-specs");
   const container = document.getElementById("secondaryImagesContainer");
@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
     "#additional-selects-container .column"
   );
   const specsContent = document.getElementById("specs-content");
+  const confirmModal = document.getElementById("confirmModal");
+  const confirmDeleteBtn = document.getElementById("confirmDelete");
+  const cancelDeleteBtn = document.getElementById("cancelDelete");
+  const mainImagePreview = document.getElementById("mainImagePreview");
+  const chooseMainImage = document.getElementById("chooseMainImage");
+  const mainImage = document.getElementById("mainImage");
   var productIndex = null;
   let selectedFiles = [];
 
@@ -39,6 +45,35 @@ document.addEventListener("DOMContentLoaded", function () {
     productTable.appendChild(row);
   });
 
+  document.getElementById("search").addEventListener("input", (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    filterProducts(searchValue);
+  });
+
+  function filterProducts(searchValue) {
+    const rows = document.querySelectorAll(".item");
+
+    rows.forEach((row) => {
+      const productName = row.children[2].textContent.toLowerCase();
+      const category = row.children[3].textContent.toLowerCase();
+
+      if (productName.includes(searchValue) || category.includes(searchValue)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  function showAlert(message) {
+    document.getElementById("alertMessage").textContent = message;
+    document.getElementById("alertModal").style.display = "flex";
+  }
+
+  document.getElementById("closeAlert").addEventListener("click", () => {
+    document.getElementById("alertModal").style.display = "none";
+  });
+
   function addSecondaryImage(imageSrc, file) {
     const imgContainer = document.createElement("div");
     imgContainer.classList.add("secondary-image");
@@ -53,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     removeBtn.onclick = function () {
       imgContainer.remove();
 
-      // Supprimer l'image du tableau selectedFiles
       selectedFiles = selectedFiles.filter((f) => f !== file);
     };
 
@@ -63,28 +97,26 @@ document.addEventListener("DOMContentLoaded", function () {
       .appendChild(imgContainer);
   }
 
-  document.getElementById("chooseMainImage").addEventListener("click", () => {
-    document.getElementById("mainImage").click();
+  chooseMainImage.addEventListener("click", () => {
+    mainImage.click();
   });
 
-  document.getElementById("mainImagePreview").addEventListener("click", () => {
-    document.getElementById("mainImage").click();
+  mainImagePreview.addEventListener("click", () => {
+    mainImage.click();
   });
 
-  document
-    .getElementById("mainImage")
-    .addEventListener("change", function (event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById("mainImagePreview").src = e.target.result;
-          document.getElementById("mainImagePreview").style.display = "block";
-          document.getElementById("chooseMainImage").style.display = "none";
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+  mainImage.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        mainImagePreview.src = e.target.result;
+        mainImagePreview.style.display = "block";
+        chooseMainImage.style.display = "none";
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
   document
     .getElementById("addSecondaryImage")
@@ -96,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("secondaryImages")
     .addEventListener("change", function (event) {
       const files = Array.from(event.target.files);
-      const container = document.getElementById("secondaryImagesContainer");
 
       files.forEach((file) => {
         const reader = new FileReader();
@@ -111,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
       event.target.value = "";
     });
 
-  filtres.generateFilters().forEach((category) => {
+  filters.generateFilters().forEach((category) => {
     const option = document.createElement("option");
     option.value = category.name;
     option.textContent = category.name;
@@ -122,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
     additionalSelectsContainer.innerHTML = "";
     const selectedCategory = e.target.value;
     // console.log(selectedCategory);
-    createOptions(filtres.generateFilters(), selectedCategory);
+    createOptions(filters.generateFilters(), selectedCategory);
     updateSubCategories(selectedCategory, sousCategorySelect);
   });
 
@@ -130,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
     additionalSelectsContainer.innerHTML = "";
     const selectedSubCategoryPath = e.target.value;
     // console.log(selectedSubCategoryPath);
-    createOptions(filtres.generateFilters(), selectedSubCategoryPath);
+    createOptions(filters.generateFilters(), selectedSubCategoryPath);
     generateSubCategorySelect(
       selectedSubCategoryPath,
       additionalSelectsContainer
@@ -139,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateSubCategories(category, selectElement) {
     const currentCategory = category.split("/").at(-1);
-    const selectedCategory = filtres
+    const selectedCategory = filters
       .generateFilters()
       .find((cat) => cat.name === currentCategory);
 
@@ -160,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentCategoryName = categoryPath.split("/").at(-1);
     const mainCategoryName = categoryPath.split("/")[0];
 
-    const mainCategory = filtres
+    const mainCategory = filters
       .generateFilters()
       .find((cat) => cat.name === mainCategoryName);
     if (!mainCategory) return;
@@ -205,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     selectBox.querySelector("select").addEventListener("change", (e) => {
       generateSubCategorySelect(e.target.value, container);
-      createOptions(filtres.generateFilters(), e.target.value);
+      createOptions(filters.generateFilters(), e.target.value);
     });
   }
 
@@ -331,19 +362,19 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("show");
     if (index === null) {
       addBtn.style.display = "block";
-      editBtn.style.display = "none";
+      saveBtn.style.display = "none";
       deleteBtn.style.display = "none";
       document.getElementById("modal-form").reset();
       additionalSelectsContainer.innerHTML = "";
       specsContent.innerHTML = "";
       otherSpecs.innerHTML = "";
       container.innerHTML = "";
-      document.getElementById("mainImagePreview").src = "";
-      document.getElementById("mainImagePreview").style.display = "none";
-      document.getElementById("chooseMainImage").style.display = "flex";
+      mainImagePreview.src = "";
+      mainImagePreview.style.display = "none";
+      chooseMainImage.style.display = "flex";
     } else {
       addBtn.style.display = "none";
-      editBtn.style.display = "block";
+      saveBtn.style.display = "block";
       deleteBtn.style.display = "block";
       chargeData(index);
     }
@@ -520,8 +551,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const mainImagePreview = document.getElementById("mainImagePreview");
-    const chooseMainImage = document.getElementById("chooseMainImage");
     if (imageUrls[0]) {
       mainImagePreview.src = imageUrls[0];
       mainImagePreview.style.display = "block";
@@ -538,7 +567,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.getElementById("add-btn").addEventListener("click", (e) => {
+  addBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const data = recoveryDate();
     const emptyKeys = Object.entries(data.specs)
@@ -561,11 +590,12 @@ document.addEventListener("DOMContentLoaded", function () {
       //Savegarde du produit
       console.log(data);
     } else {
-      alert("Veuillez remplire tous les champs");
+      // alert("Veuillez remplire tous les champs");
+      showAlert("Veuillez remplir tous les champs");
     }
   });
 
-  document.getElementById("save-btn").addEventListener("click", (e) => {
+  saveBtn.addEventListener("click", (e) => {
     e.preventDefault();
     recoveryDate();
     const data = recoveryDate();
@@ -591,14 +621,24 @@ document.addEventListener("DOMContentLoaded", function () {
       //Savegarde du produit
       console.log(data);
     } else {
-      alert("Veuillez remplire tous les champs");
+      // alert("Veuillez remplire tous les champs");
+      showAlert("Veuillez remplir tous les champs");
     }
   });
 
-  document.getElementById("delete-btn").addEventListener("click", (e) => {
+  deleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    alert(`delete product ${productIndex}`);
+    confirmModal.style.display = "flex";
+  });
+
+  confirmDeleteBtn.addEventListener("click", () => {
+    alert(`Produit supprimé : ${productIndex}`);
+    confirmModal.style.display = "none";
     closeModal();
+  });
+
+  cancelDeleteBtn.addEventListener("click", () => {
+    confirmModal.style.display = "none";
   });
 
   function recoveryDate() {
@@ -606,7 +646,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const category = foundLastCategory();
     let images = [];
 
-    const file = document.getElementById("mainImage").files[0];
+    const file = mainImage.files[0];
     if (file) {
       //Savegarde de l'image principale dans sfirebase storage et recuperation du url
       console.log(file);
@@ -614,7 +654,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       images[0] = primaryUrl;
     } else {
-      const mainImagePreview = document.getElementById("mainImagePreview");
       if (mainImagePreview.src && mainImagePreview.style.display !== "none") {
         images[0] = mainImagePreview.src;
       }

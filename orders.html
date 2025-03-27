@@ -6,7 +6,7 @@
     <title>DashBoard - Products</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/products.css" />
+    <link rel="stylesheet" href="css/orders.css" />
 
     <!--============Icon Cdn==============-->
     <link
@@ -14,9 +14,6 @@
       href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
     />
     <!--============Icon Cdn==============-->
-
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/products.css" />
   </head>
   <body>
     <!-- ============Preloader============ -->
@@ -35,150 +32,68 @@
         <form id="modal-form">
           <div class="first-content">
             <div class="header">
-              <h2>Product</h2>
+              <div class="order-title">
+                <i class="uil uil-box"></i>
+                <h2 id="title">Order Details</h2>
+              </div>
               <button id="close-modal" class="close-modal">
                 <ion-icon name="close-outline"></ion-icon>
               </button>
             </div>
-            <div class="content">
-              <div class="images-content">
-                <h3>Images</h3>
-                <div class="imageContent">
-                  <div class="image-section">
-                    <div id="chooseMainImage" class="chooseMainImage">
-                      <i class="uil uil-upload"></i>
-                    </div>
-                    <input
-                      type="file"
-                      id="mainImage"
-                      name="mainImage"
-                      accept="image/*"
-                      style="display: none"
-                    />
-                    <img
-                      id="mainImagePreview"
-                      src=""
-                      alt="Aperçu de l'image principale"
-                      style="display: none"
-                    />
+            <div class="contentAll">
+              <div id="products-content" class="products-content"></div>
+              <div class="user-content">
+                <h2>Customer</h2>
+                <div class="user-name-content">
+                  <i class="uil uil-user-circle"></i>
+                  <p id="user-name"></p>
+                  <a href="account.html" class="uil uil-arrow-right"></a>
+                </div>
+                <hr />
+                <div class="user-products">
+                  <i class="uil uil-archive"></i>
+                  <p id="nbr-articles"></p>
+                </div>
+                <hr />
+                <div class="user-contact-info">
+                  <h2>Contact info</h2>
+                  <div class="">
+                    <i class="uil uil-envelope"></i>
+                    <p id="user-email"></p>
                   </div>
-                  <div class="chooseSecondaryImages">
-                    <input
-                      type="file"
-                      id="secondaryImages"
-                      accept="image/*"
-                      multiple
-                      style="display: none"
-                    />
-                    <button type="button" id="addSecondaryImage">
-                      Ajouter des images secondaires
-                    </button>
-                    <div
-                      class="secondary-images"
-                      id="secondaryImagesContainer"
-                    ></div>
+                  <div class="">
+                    <i class="uil uil-phone-alt"></i>
+                    <p id="user-phone-number"></p>
                   </div>
                 </div>
+                <hr />
+                <div id="user-address" class="user-shipping-adress"></div>
               </div>
-              <div class="details-content">
-                <h3>Détails du produit</h3>
-                <div class="input-box">
-                  <label for="productName">Nom du produit</label>
-                  <input
-                    type="text"
-                    id="productName"
-                    name="productName"
-                    placeholder="Entrez le nom du produit"
-                    required
-                  />
-                </div>
+              <div class="order-summary">
+                <!-- <h2>Order Details</h2> -->
+                <table class="cart-summary-table">
+                  <tbody>
+                    <tr class="cart-subtotal">
+                      <th>Subtotal</th>
+                      <td id="sub-total"></td>
+                    </tr>
+                    <tr class="cart-shipping">
+                      <th>Shipping Fee</th>
+                      <td id="shipping-total"></td>
+                    </tr>
+                    <tr class="order-total">
+                      <th>Total Paid</th>
+                      <td id="total"></td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                <div class="column">
-                  <div class="select-box">
-                    <label for="category-select">Catégorie</label>
-                    <select name="category" id="category-select" required>
-                      <option value="" disabled selected hidden>
-                        Sélectionnez une catégorie
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="select-box">
-                    <label for="sous-category-select">Sous-catégorie</label>
-                    <select
-                      name="sub-category"
-                      id="sous-category-select"
-                      required
-                    >
-                      <option value="" disabled selected hidden>
-                        Sélectionnez une sous-catégorie
-                      </option>
-                    </select>
-                  </div>
-                </div>
-
-                <div id="additional-selects-container">
-                  <div class="column"></div>
-                </div>
-
-                <div class="column">
-                  <div class="input-box">
-                    <label for="price">Prix</label>
-                    <input
-                      type="number"
-                      id="price"
-                      name="productPrice"
-                      placeholder="Entrez le prix du produit"
-                      required
-                    />
-                  </div>
-                  <div class="input-box">
-                    <label for="priceReduction">Réduction</label>
-                    <input
-                      type="number"
-                      id="priceReduction"
-                      name="productPriceReduction"
-                      placeholder="Entrez le prix de réduction du produit"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div class="column">
-                  <div class="input-box">
-                    <label for="sales">Ventes</label>
-                    <input
-                      type="number"
-                      id="sales"
-                      name="productSales"
-                      placeholder="Entrez le nombre de ventes"
-                      required
-                    />
-                  </div>
-                  <div class="input-box">
-                    <label for="qty">Quantité</label>
-                    <input
-                      type="number"
-                      id="qty"
-                      name="productQty"
-                      placeholder="Entrez la quantité du produit"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="specs-content">
-                <div class="specs-title">
-                  <h3>Specs</h3>
-                  <h3><i id="specsAdd" class="uil uil-book-medical"></i></h3>
-                </div>
-                <div id="specs-content"></div>
-                <div id="other-specs"></div>
+                <!-- <h2>Payment Status</h2> -->
+                 <div id="payment-status"></div>
               </div>
             </div>
           </div>
           <div class="second-content">
-            <button type="submit" id="add-btn" class="modal-btn">Add</button>
             <button type="submit" id="delete-btn" class="modal-btn">
               Delete
             </button>
@@ -188,7 +103,7 @@
       </div>
     </div>
 
-    <div id="confirmModal" class="modal">
+    <!-- <div id="confirmModal" class="modal">
       <div class="modal-content-confirm">
         <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
         <button id="confirmDelete">Oui</button>
@@ -201,7 +116,7 @@
         <p id="alertMessage"></p>
         <button id="closeAlert">OK</button>
       </div>
-    </div>
+    </div> -->
 
     <div class="wrapper">
       <div class="container">
@@ -225,7 +140,7 @@
               </a>
             </li>
 
-            <li class="hovered">
+            <li>
               <a href="products.html">
                 <span class="icon">
                   <ion-icon name="server-outline"></ion-icon>
@@ -234,7 +149,7 @@
               </a>
             </li>
 
-            <li>
+            <li class="hovered">
               <a href="orders.html">
                 <span class="icon">
                   <ion-icon name="reorder-four-outline"></ion-icon>
@@ -318,33 +233,115 @@
           </div>
 
           <div class="admin-dashboard">
-            <h1>Products Managers</h1>
+            <h1>Orders Managers</h1>
 
-            <div class="table-actions">
+            <div class="orders-actions">
               <input
                 type="text"
-                id="search"
+                id="search-orders"
                 class="search"
-                placeholder="Search products..."
+                placeholder="Search orders..."
               />
-              <button id="open-modal">
-                <i class="fas fa-plus"></i> Add New Product
-              </button>
+            </div>
+
+            <div class="filter">
+              <ul>
+                <li>
+                  <input id="pending" name="pending" type="checkbox" />
+                  <label for="pending">Pending</label>
+                </li>
+                <li>
+                  <input id="shipping" name="shipping" type="checkbox" />
+                  <label for="shipping">Shipping</label>
+                </li>
+                <li>
+                  <input id="progressed" name="progressed" type="checkbox" />
+                  <label for="progressed">Progressed</label>
+                </li>
+                <li>
+                  <input id="delivered" name="delivered" type="checkbox" />
+                  <label for="delivered">Delivered</label>
+                </li>
+                <li>
+                  <input id="checking" name="checking" type="checkbox" />
+                  <label for="checking">Checking</label>
+                </li>
+                <li>
+                  <input id="cancelled" name="cancelled" type="checkbox" />
+                  <label for="cancelled">Cancelled</label>
+                </li>
+                <li>
+                  <input id="returned" name="returned" type="checkbox" />
+                  <label for="returned">Returned</label>
+                </li>
+                <li>
+                  <input
+                    id="report-returned"
+                    name="report-returned"
+                    type="checkbox"
+                  />
+                  <label for="report-returned">Report Returned</label>
+                </li>
+                <li>
+                  <input
+                    id="dismiss-delivered"
+                    name="dismiss-delivered"
+                    type="checkbox"
+                  />
+                  <label for="dismiss-delivered">Dismiss Delivered</label>
+                </li>
+                <li>
+                  <input
+                    id="report-delivered"
+                    name="report-delivered"
+                    type="checkbox"
+                  />
+                  <label for="report-delivered">Report Delivered</label>
+                </li>
+                <li>
+                  <input
+                    id="dismiss-returned"
+                    name="dismiss-returned"
+                    type="checkbox"
+                  />
+                  <label for="dismiss-returned">Dismiss Returned</label>
+                </li>
+              </ul>
+
+              <div class="sort-options">
+                <div class="sort-group">
+                  <button data-criteria="orderId" class="sort-btn">
+                    Sort by Order ID
+                  </button>
+                  <span class="arrow" id="orderId-arrow"></span>
+                </div>
+                <div class="sort-group">
+                  <button data-criteria="price" class="sort-btn">
+                    Sort by Total Amount
+                  </button>
+                  <span class="arrow" id="price-arrow"></span>
+                </div>
+                <div class="sort-group">
+                  <button data-criteria="updatedAt" class="sort-btn">
+                    Sort by Date
+                  </button>
+                  <span class="arrow" id="updatedAt-arrow"></span>
+                </div>
+              </div>
             </div>
 
             <table>
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Sales</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Price (FCFA)</th>
-                  <th>Stock</th>
+                  <th>Customer Name</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Total (FCFA)</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody id="productTable"></tbody>
+              <tbody id="ordersTable"></tbody>
             </table>
           </div>
         </main>
@@ -353,7 +350,7 @@
 
     <!-- =========== Scripts =========  -->
     <script src="js/base.js"></script>
-    <script src="js/products.js"></script>
+    <script src="js/orders.js"></script>
 
     <!-- ====== ionicons ======= -->
     <script

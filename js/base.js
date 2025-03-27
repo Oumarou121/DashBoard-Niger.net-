@@ -33,6 +33,36 @@ function formatPrice(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
+function formatDateOrder(date1, date2 = null) {
+  if (date2 === null) {
+    return `Le ${formatDate2(date1)}`;
+  } else {
+    return `Entre Le ${formatDate2(date1)} et le ${formatDate2(date2)}`;
+  }
+}
+
+function formatDate1(timestamp) {
+  const date = new Date(timestamp);
+
+  const optionsDate = { day: "numeric", month: "long", year: "numeric" };
+
+  const formattedDate = date.toLocaleDateString("fr-FR", optionsDate);
+
+  return `${formattedDate}`;
+}
+
+function formatDate2(timestamp) {
+  const date = new Date(timestamp);
+
+  const optionsDate = { day: "numeric", month: "long", year: "numeric" };
+  const optionsTime = { hour: "2-digit", minute: "2-digit" };
+
+  const formattedDate = date.toLocaleDateString("fr-FR", optionsDate);
+  const formattedTime = date.toLocaleTimeString("fr-FR", optionsTime);
+
+  return `${formattedDate} à ${formattedTime}`;
+}
+
 class Product {
   constructor(
     id,
@@ -248,7 +278,7 @@ const products = [
   ),
 ];
 
-class Filtres {
+class Filters {
   constructor() {
     this.categories = [];
   }
@@ -412,10 +442,292 @@ securite.addSubCategory(new SubCategory("Systèmes & Logiciels Antivirus"));
 securite.addSubCategory(new SubCategory("Systèmes de Sécurité"));
 securite.addSubCategory(new SubCategory("Caméras"));
 
-// Creation des filtres
-const filtres = new Filtres();
-filtres.addCategory(informatique);
-filtres.addCategory(telephonieTablette);
-filtres.addCategory(stockage);
-filtres.addCategory(tvSonConsole);
-filtres.addCategory(securite);
+// Creation des filters
+const filters = new Filters();
+filters.addCategory(informatique);
+filters.addCategory(telephonieTablette);
+filters.addCategory(stockage);
+filters.addCategory(tvSonConsole);
+filters.addCategory(securite);
+
+class User {
+  constructor(id, email, addresses = [], currentIndex) {
+    this.id = id;
+    this.email = email;
+    this.addresses = addresses;
+    this.currentIndex = currentIndex;
+  }
+
+  addAdress(address) {
+    this.addresses.push(address);
+  }
+}
+
+class Address {
+  constructor(
+    firstName,
+    lastName,
+    phoneNumber1,
+    phoneNumber2,
+    region,
+    district,
+    street
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.phoneNumber1 = phoneNumber1;
+    this.phoneNumber2 = phoneNumber2;
+    this.region = region;
+    this.district = district;
+    this.street = street;
+  }
+}
+
+var user = new User(
+  0,
+  "oumaroumamodou123@gmail.com",
+  [
+    new Address(
+      "Oumarou",
+      "M1",
+      "+227 98663248",
+      "+227 94464839",
+      "Niamey",
+      "Dar es salam",
+      "Pharmacy Say"
+    ),
+    new Address(
+      "Oumarou",
+      "M2",
+      "+227 98663248",
+      "+227 94464839",
+      "Niamey",
+      "Dar es salam",
+      "Pharmacy Say"
+    ),
+    new Address(
+      "Oumarou",
+      "M3",
+      "+227 98663248",
+      "+227 94464839",
+      "Niamey",
+      "Dar es salam",
+      "Pharmacy Say"
+    ),
+  ],
+  0
+);
+
+class orderItemHistory {
+  constructor(status, updateAt, endingAt = null, garantie = null) {
+    this.status = status;
+    this.updateAt = updateAt;
+    this.endingAt = endingAt;
+    this.garantie = garantie;
+  }
+}
+
+class orderItem {
+  constructor(
+    productId,
+    productName,
+    image,
+    price,
+    priceReduction,
+    quantity,
+    history = []
+  ) {
+    this.productId = productId;
+    this.productName = productName;
+    this.image = image;
+    this.price = price;
+    this.priceReduction = priceReduction;
+    this.quantity = quantity;
+    this.history = history;
+  }
+}
+
+class Order {
+  constructor(
+    id,
+    userId,
+    userEmail,
+    items = [],
+    shippingAddress = null,
+    payment,
+    totalPrice,
+    deliveryPrice,
+    status,
+    createAt,
+    updateAt
+  ) {
+    this.id = id;
+    this.userId = userId;
+    this.userEmail = userEmail;
+    this.items = items;
+    this.shippingAddress = shippingAddress;
+    this.payment = payment;
+    this.totalPrice = totalPrice;
+    this.deliveryPrice = deliveryPrice;
+    this.status = status;
+    this.createAt = createAt;
+    this.updateAt = updateAt;
+  }
+
+  getItems() {
+    return this.items;
+  }
+}
+
+class OrdersManager {
+  constructor(orders = []) {
+    this.orders = orders;
+  }
+
+  addOrder(order) {
+    this.orders.push(order);
+  }
+
+  getOrderById(id) {
+    return this.orders.filter((o) => o.id === id);
+  }
+
+  getOrders() {
+    return this.orders;
+  }
+}
+
+var ordersManager = new OrdersManager([
+  new Order(
+    0,
+    0,
+    "oumaroumamodou123@gmail.com",
+    [
+      new orderItem(
+        0,
+        "Uphone lightning cable",
+        "//drou-electronics-store.myshopify.com/cdn/shop/products/p4_c46c6d30-4b9f-4971-96be-d28d9f0d5ee5_large.jpg?v=1674275311",
+        10000,
+        0,
+        1,
+        [
+          new orderItemHistory("pending", Date.now() - 2 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "progress",
+            Date.now() - 1 * 24 * 60 * 60 * 1000
+          ),
+          new orderItemHistory(
+            "pending",
+            Date.now() - 2 * 24 * 60 * 60 * 1000,
+            Date.now()
+          ),
+        ]
+      ),
+      new orderItem(
+        1,
+        "iPhone 14 pro max",
+        "https://drou-electronics-store.myshopify.com/cdn/shop/products/p7_36d931d4-1ef2-4c82-9a65-80426fb77f21_1024x1024.jpg?v=1674275335",
+        200000,
+        0,
+        1,
+        [
+          new orderItemHistory("pending", Date.now() - 2 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "shipping",
+            Date.now() - 1 * 24 * 60 * 60 * 1000
+          ),
+        ]
+      ),
+      new orderItem(
+        2,
+        "Smartphone Tecno Spark Go 2024",
+        "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
+        65000,
+        5000,
+        2,
+        [
+          new orderItemHistory("pending", Date.now() - 1 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "shipping",
+            Date.now() - 2 * 24 * 60 * 60 * 1000
+          ),
+          new orderItemHistory(
+            "progressed",
+            Date.now() - 1 * 24 * 60 * 60 * 1000,
+            Date.now()
+          ),
+          new orderItemHistory(
+            "progressed",
+            Date.now(),
+            Date.now() + 3 * 24 * 60 * 60 * 1000
+          ),
+        ]
+      ),
+    ],
+    user.addresses[0],
+    "cash",
+    1800000,
+    1000,
+    "shipping",
+    Date.now() - 3 * 24 * 60 * 60 * 1000,
+    Date.now()
+  ),
+  new Order(
+    1,
+    0,
+    "asma@gmail.com",
+    [
+      new orderItem(
+        3,
+        "Uphone lightning cable",
+        "//drou-electronics-store.myshopify.com/cdn/shop/products/p4_c46c6d30-4b9f-4971-96be-d28d9f0d5ee5_large.jpg?v=1674275311",
+        10000,
+        0,
+        1,
+        [
+          new orderItemHistory("pending", Date.now() - 2 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "progress",
+            Date.now() - 1 * 24 * 60 * 60 * 1000
+          ),
+          new orderItemHistory(
+            "checking",
+            Date.now() - 1 * 24 * 60 * 60 * 1000,
+            Date.now()
+          ),
+        ]
+      ),
+      new orderItem(
+        4,
+        "iPhone 14 pro max",
+        "https://drou-electronics-store.myshopify.com/cdn/shop/products/p7_36d931d4-1ef2-4c82-9a65-80426fb77f21_1024x1024.jpg?v=1674275335",
+        200000,
+        0,
+        1,
+        [
+          new orderItemHistory("pending", Date.now() - 2 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "report-returned",
+            Date.now() - 1 * 24 * 60 * 60 * 1000
+          ),
+        ]
+      ),
+      new orderItem(
+        5,
+        "Smartphone Tecno Spark Go 2024",
+        "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
+        65000,
+        5000,
+        2,
+        [new orderItemHistory("report-delivered", Date.now())]
+      ),
+    ],
+    user.addresses[0],
+    "virtual-wallet-10248732",
+    1800000,
+    1000,
+    "shipping",
+    Date.now() - 3 * 24 * 60 * 60 * 1000,
+    Date.now()
+  ),
+]);

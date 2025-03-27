@@ -428,3 +428,155 @@ ol {
 .no-interaction {
   pointer-events: none;
 }
+
+/* ========================================================================== */
+
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
+.admin-dashboard h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.table-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.admin-dashboard .search {
+  width: 70%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f8f9fa;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  flex: 1;
+}
+
+.admin-dashboard .search:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.admin-dashboard button {
+  padding: 12px 25px;
+  background-color: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+  align-items: center;
+  margin-left: 10px;
+}
+
+.admin-dashboard button:hover {
+  background-color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+table thead {
+  background-color: var(--blue);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+table th,
+table td {
+  padding: 18px 25px;
+  text-align: left;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.infos {
+  margin-left: 0 !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+}
+
+@media (max-width: 767px) {
+  .admin-dashboard {
+    padding: 15px;
+  }
+  table {
+    box-shadow: none;
+  }
+  .product-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .admin-dashboard .search,
+  .product-actions button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  td {
+    display: block !important;
+    width: 100%;
+    text-align: center !important;
+  }
+
+  tr {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .infos {
+    width: 80%;
+  }
+
+  /* td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #555;
+  } */
+}
