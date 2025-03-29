@@ -130,14 +130,24 @@ const products = [
       "//drou-electronics-store.myshopify.com/cdn/shop/products/p5_61c8ce6b-3afa-4276-a285-f98e4d5c7f67_large.jpg?v=1674275311",
     ],
     {
-      Interface: "Bluetooth",
-      Batterie: "500mha",
-      Chargeur: "Cable",
-      Micro: "Oui",
-      Couleur: "White",
-      Garantie: "1ans",
+      "Système d'exploitation": "Windows 10",
+      Processeur: "Intel Atom",
+      "Réf processeur":
+        "Intel Atom x5-Z8350 Quad Core, 1,44 GHz jusqu'à 1,92 GHz, 2 Mode mémoire cache",
+      "Taille de mémoire": "64Go",
+      Mémoire: "2 Go",
+      "Disque Dur": "32 Go eMMC",
+      "Carte Graphique": "Intel HD Graphics",
+      "Taille Ecran": '14"',
+      "Type Ecran": "Full HD",
+      "Ecran Tactile": "Non",
+      Réseau: "WiFi - Bluetooth",
+      Caméra: "Webcam avec micro",
+      // Guarantee: "1 an",
+      Couleur: "Noir",
+      Availability: "Available In stock",
+      Access: "oui",
     },
-
     [
       {
         name: "Oumarou",
@@ -191,7 +201,7 @@ const products = [
       "Charge rapide": "15 W Type C",
       Audio: "Deux haut-parleurs (Son DTS)",
       Couleur: "Vert",
-      Garantie: "1 an",
+      Guarantee: "1 an",
     },
     [
       {
@@ -233,6 +243,113 @@ const products = [
     ],
 
     {
+      Écran: '15.6" Full HD (1920 x 1080), IPS, 144 Hz',
+      Processeur:
+        "Intel Core i7-13620H 13e génération (jusqu’à 4.9 GHz, 24 Mo de cache)",
+      Mémoire: "8 Go DDR5",
+      Stockage: "SSD NVMe M.2 512 Go",
+      "Carte graphique": "NVIDIA GeForce RTX 4060, 8 Go GDDR6",
+      Clavier: "Rétroéclairé simple",
+      Webcam: "HD 720p",
+      Audio: "2x haut-parleurs 2W, Nahimic 3 Audio Enhancer, Hi-Res Audio",
+      Connectique: "2x USB 3.2, 1x USB-C 3.2, 1x HDMI 2.1",
+      Réseau: "Gigabit Ethernet - Wi-Fi 6E - Bluetooth 5.3",
+      Système: "FreeDos",
+      Couleur: "Noir translucide",
+      Guarantee: "1 an",
+    },
+    [
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Product(
+    3,
+    100,
+    10,
+    "Uphone lightning cable",
+    "Téléphonie & Tablette/Accessoirs/Chargeurs & cablés",
+    10000,
+    0,
+    [
+      "//drou-electronics-store.myshopify.com/cdn/shop/products/p4_c46c6d30-4b9f-4971-96be-d28d9f0d5ee5_large.jpg?v=1674275311",
+      "//drou-electronics-store.myshopify.com/cdn/shop/products/p5_61c8ce6b-3afa-4276-a285-f98e4d5c7f67_large.jpg?v=1674275311",
+    ],
+    {
+      "Système d'exploitation": "Windows 10",
+      Processeur: "Intel Atom",
+      "Réf processeur":
+        "Intel Atom x5-Z8350 Quad Core, 1,44 GHz jusqu'à 1,92 GHz, 2 Mode mémoire cache",
+      "Taille de mémoire": "64Go",
+      Mémoire: "2 Go",
+      "Disque Dur": "32 Go eMMC",
+      "Carte Graphique": "Intel HD Graphics",
+      "Taille Ecran": '14"',
+      "Type Ecran": "Full HD",
+      "Ecran Tactile": "Non",
+      Réseau: "WiFi - Bluetooth",
+      Caméra: "Webcam avec micro",
+      Guarantee: "1 an",
+      Couleur: "Noir",
+      Availability: "Available In stock",
+      Access: "oui",
+    },
+    [
+      {
+        name: "Oumarou",
+        date: "12/04/2024",
+        rating: 1,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Ben Arfa",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Arafat",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Product(
+    4,
+    10,
+    15,
+    "Smartphone Tecno Spark Go 2024",
+    "Téléphonie & Tablette/Smartphone",
+    65000,
+    5000,
+    [
+      "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
+      "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
+    ],
+    {
       "Double SIM": "Oui",
       Écran: 'Hole Screen 6.67" (720 x 1600 px), 120 Hz',
       Processeur: "Unisoc T615 Octa-core (12 nm)",
@@ -249,9 +366,63 @@ const products = [
       "Charge rapide": "15 W Type C",
       Audio: "Deux haut-parleurs (Son DTS)",
       Couleur: "Vert",
-      Garantie: "1 an",
+      Guarantee: "1 an",
     },
+    [
+      {
+        name: "Mohamed",
+        date: "12/04/2024",
+        rating: 2,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Ahmed",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Abou",
+        date: "12/04/2024",
+        rating: 2,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Product(
+    5,
+    5,
+    20,
+    "iPhone 14 pro max",
+    "Téléphonie & Tablette/Smartphone",
+    250000,
+    45000,
 
+    [
+      "https://drou-electronics-store.myshopify.com/cdn/shop/products/p7_36d931d4-1ef2-4c82-9a65-80426fb77f21_1024x1024.jpg?v=1674275335",
+      "https://drou-electronics-store.myshopify.com/cdn/shop/products/p8_523c97c7-2aa2-47e8-8b17-5a3c05a66db3_1024x1024.jpg?v=1674275335",
+      "//drou-electronics-store.myshopify.com/cdn/shop/products/p5_61c8ce6b-3afa-4276-a285-f98e4d5c7f67_large.jpg?v=1674275311",
+    ],
+
+    {
+      Écran: '15.6" Full HD (1920 x 1080), IPS, 144 Hz',
+      Processeur:
+        "Intel Core i7-13620H 13e génération (jusqu’à 4.9 GHz, 24 Mo de cache)",
+      Mémoire: "8 Go DDR5",
+      Stockage: "SSD NVMe M.2 512 Go",
+      "Carte graphique": "NVIDIA GeForce RTX 4060, 8 Go GDDR6",
+      Clavier: "Rétroéclairé simple",
+      Webcam: "HD 720p",
+      Audio: "2x haut-parleurs 2W, Nahimic 3 Audio Enhancer, Hi-Res Audio",
+      Connectique: "2x USB 3.2, 1x USB-C 3.2, 1x HDMI 2.1",
+      Réseau: "Gigabit Ethernet - Wi-Fi 6E - Bluetooth 5.3",
+      Système: "FreeDos",
+      Couleur: "Noir translucide",
+      Guarantee: "1 an",
+    },
     [
       {
         name: "AB",
@@ -518,12 +689,27 @@ var user = new User(
   0
 );
 
+class Justification {
+  constructor(quantity, justification, justificationImage = null) {
+    this.quantity = quantity;
+    this.justification = justification;
+    this.justificationImage = justificationImage;
+  }
+}
+
 class orderItemHistory {
-  constructor(status, updateAt, endingAt = null, garantie = null) {
+  constructor(
+    status,
+    updateAt,
+    endingAt = null,
+    guarantee = null,
+    justification = null
+  ) {
     this.status = status;
     this.updateAt = updateAt;
     this.endingAt = endingAt;
-    this.garantie = garantie;
+    this.guarantee = guarantee;
+    this.justification = justification;
   }
 }
 
@@ -724,6 +910,76 @@ var ordersManager = new OrdersManager([
     ],
     user.addresses[0],
     "virtual-wallet-10248732",
+    1800000,
+    1000,
+    "shipping",
+    Date.now() - 3 * 24 * 60 * 60 * 1000,
+    Date.now()
+  ),
+  new Order(
+    2,
+    0,
+    "oumaroumamodou123@gmail.com",
+    [
+      new orderItem(
+        0,
+        "Uphone lightning cable",
+        "//drou-electronics-store.myshopify.com/cdn/shop/products/p4_c46c6d30-4b9f-4971-96be-d28d9f0d5ee5_large.jpg?v=1674275311",
+        10000,
+        0,
+        1,
+        [
+          new orderItemHistory("pending", Date.now() - 2 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "shipping",
+            Date.now() - 1 * 24 * 60 * 60 * 1000
+          ),
+          new orderItemHistory(
+            "checking",
+            Date.now() - 2 * 24 * 60 * 60 * 1000,
+            Date.now()
+          ),
+        ]
+      ),
+      new orderItem(
+        1,
+        "iPhone 14 pro max",
+        "https://drou-electronics-store.myshopify.com/cdn/shop/products/p7_36d931d4-1ef2-4c82-9a65-80426fb77f21_1024x1024.jpg?v=1674275335",
+        200000,
+        0,
+        1,
+        [
+          new orderItemHistory("pending", Date.now() - 2 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "checking",
+            Date.now() - 1 * 24 * 60 * 60 * 1000,
+            Date.now()
+          ),
+        ]
+      ),
+      new orderItem(
+        2,
+        "Smartphone Tecno Spark Go 2024",
+        "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
+        65000,
+        5000,
+        2,
+        [
+          new orderItemHistory("pending", Date.now() - 1 * 24 * 60 * 60 * 1000),
+          new orderItemHistory(
+            "shipping",
+            Date.now() - 2 * 24 * 60 * 60 * 1000
+          ),
+          new orderItemHistory(
+            "checking",
+            Date.now() - 1 * 24 * 60 * 60 * 1000,
+            Date.now()
+          ),
+        ]
+      ),
+    ],
+    user.addresses[0],
+    "cash",
     1800000,
     1000,
     "shipping",

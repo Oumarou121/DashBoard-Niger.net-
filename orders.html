@@ -42,6 +42,42 @@
             </div>
             <div class="contentAll">
               <div id="products-content" class="products-content"></div>
+              <div class="updateAll">
+                <h2>Update All Orders</h2>
+                <div class="select-box">
+                  <select name="newStatus" class="newStatus" required="">
+                    <option value="" disabled="" selected="" hidden="">
+                      New Status
+                    </option>
+                  </select>
+                  <input name="delay" type="number" placeholder="Delay Max" />
+                </div>
+                <div class="rejectReasonContainer">
+                  <span>Motif de rejet :</span>
+                  <select name="rejectReasonSelect" class="rejectReasonSelect">
+                    <option value="" disabled="" selected="" hidden="">
+                      Choisissez un motif
+                    </option>
+                    <option value="Produit en rupture de stock">
+                      Produit en rupture de stock
+                    </option>
+                    <option value="Adresse de livraison incorrecte">
+                      Adresse de livraison incorrecte
+                    </option>
+                    <option value="Problème de paiement">
+                      Problème de paiement
+                    </option>
+                    <option value="autre">Autre (spécifiez ci-dessous)</option>
+                  </select>
+
+                  <textarea
+                    name="rejectReason"
+                    class="rejectReason"
+                    placeholder="Autre motif..."
+                    style="display: none"
+                  ></textarea>
+                </div>
+              </div>
               <div class="user-content">
                 <h2>Customer</h2>
                 <div class="user-name-content">
@@ -89,7 +125,7 @@
                 </table>
 
                 <!-- <h2>Payment Status</h2> -->
-                 <div id="payment-status"></div>
+                <div id="payment-status"></div>
               </div>
             </div>
           </div>
@@ -103,11 +139,32 @@
       </div>
     </div>
 
-    <!-- <div id="confirmModal" class="modal">
+    <div id="rejectModal" class="modal">
+      <div class="modal-content-justificatif">
+        <h2>Justificatif de retour</h2>
+        <p>
+          <strong>Quantité retourné :</strong> <span id="modalQuantity">3</span>
+        </p>
+        <p>
+          <strong>Motif :</strong>
+          <span id="modalReason">Produit en rupture de stock</span>
+        </p>
+        <div class="image-container">
+          <img
+            id="modalImage"
+            src="https://via.placeholder.com/300"
+            alt="Justificatif"
+          />
+        </div>
+        <button id="closeModalBtn" class="ok-btn">OK</button>
+      </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
       <div class="modal-content-confirm">
-        <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
-        <button id="confirmDelete">Oui</button>
-        <button id="cancelDelete">Non</button>
+        <p id="p-confirm"></p>
+        <button id="confirm-save">Oui</button>
+        <button id="cancel-save">Non</button>
       </div>
     </div>
 
@@ -116,7 +173,7 @@
         <p id="alertMessage"></p>
         <button id="closeAlert">OK</button>
       </div>
-    </div> -->
+    </div>
 
     <div class="wrapper">
       <div class="container">
@@ -222,7 +279,7 @@
 
             <div class="search">
               <label>
-                <input type="text" placeholder="Search here" />
+                <input name="search" type="text" placeholder="Search here" />
                 <ion-icon name="search-outline"></ion-icon>
               </label>
             </div>
