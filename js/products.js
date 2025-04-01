@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <td>${product.qty}</td>
     <td>
         <button class="infos">Infos</button>
+        <button class="reviews">Reviews</button>
     </td>
   `;
 

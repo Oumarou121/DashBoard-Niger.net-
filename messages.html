@@ -3,10 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DashBoard</title>
+    <title>DashBoard - Customers</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/messages.css" />
+
+    <!--============Icon Cdn==============-->
+
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!--============Icon Cdn==============-->
   </head>
   <body>
     <!-- ============Preloader============ -->
@@ -17,6 +31,83 @@
           <div class="object" id="object_two"></div>
           <div class="object" id="object_three"></div>
         </div>
+      </div>
+    </div>
+
+    <div id="alertModal" class="modal">
+      <div class="modal-content-confirm">
+        <p id="alertMessage"></p>
+        <button onclick="closeAnyModal(this)" id="closeAlert">OK</button>
+      </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+      <div class="modal-content-confirm">
+        <p id="p-confirm"></p>
+        <button id="confirm-save">Oui</button>
+        <button onclick="closeAnyModal(this)" id="cancel-save">Non</button>
+      </div>
+    </div>
+
+    <div id="custom-modal" class="custom-modal">
+      <div class="modal-content">
+        <form id="modal-form">
+          <div class="first-content">
+            <div class="header">
+              <h2>Message</h2>
+              <button id="close-modal" class="close-modal">
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+            <div class="content">
+              <div class="primary-content">
+                <div id="sender-box" class="form-group">
+                  <label class="form-label" for="sender">Sender</label>
+                  <select name="sender" id="sender" class="form-input">
+                    <option value="Administrateur" selected>
+                      Administrateur
+                    </option>
+                    <option value="Support">Support</option>
+                    <option value="Livraison">Livraison</option>
+                  </select>
+                </div>
+                <div id="sender-box-view" class="form-group">
+                  <label class="form-label" for="sender-view">Sender</label>
+                  <input
+                    type="text"
+                    id="sender-view"
+                    placeholder="Sender"
+                    class="form-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="receiver">Receiver</label>
+                  <input
+                    type="email"
+                    id="receiver"
+                    placeholder="Receiver"
+                    class="form-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Enter your Message"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="second-content">
+            <button type="submit" id="add-btn" class="modal-btn">Add</button>
+            <button type="submit" id="delete-btn" class="modal-btn">
+              Delete
+            </button>
+            <button type="submit" id="save-btn" class="modal-btn">Save</button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -33,7 +124,7 @@
               </a>
             </li>
 
-            <li class="hovered">
+            <li>
               <a href="index.html">
                 <span class="icon">
                   <ion-icon name="home-outline"></ion-icon>
@@ -78,7 +169,7 @@
               </a>
             </li>
 
-            <li>
+            <li class="hovered">
               <a href="messages.html">
                 <span class="icon">
                   <ion-icon name="chatbubble-outline"></ion-icon>
@@ -132,61 +223,42 @@
               <img src="assets/images/me.jpg" alt="" />
             </div>
           </div>
-          <!-- ======================= Cards ================== -->
-          <div class="cardBox">
-            <div class="card">
-              <div>
-                <div class="numbers">1,504</div>
-                <div class="cardName">Daily Views</div>
-              </div>
 
-              <div class="iconBx">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
+          <div class="admin-dashboard">
+            <h1>Messages Managers</h1>
+
+            <div class="table-actions">
+              <input
+                type="text"
+                id="search"
+                class="search"
+                placeholder="Search messages..."
+              />
+              <button id="open-modal">
+                <i class="fas fa-plus"></i> Add New Message
+              </button>
             </div>
 
-            <div class="card">
-              <div>
-                <div class="numbers">80</div>
-                <div class="cardName">Sales</div>
-              </div>
-
-              <div class="iconBx">
-                <ion-icon name="cart-outline"></ion-icon>
-              </div>
-            </div>
-
-            <div class="card">
-              <div>
-                <div class="numbers">284</div>
-                <div class="cardName">Comments</div>
-              </div>
-
-              <div class="iconBx">
-                <ion-icon name="chatbubbles-outline"></ion-icon>
-              </div>
-            </div>
-
-            <div class="card">
-              <div>
-                <div class="numbers">100.050</div>
-                <div class="cardName">
-                  Earning <span class="device">(FCFA)</span>
-                </div>
-              </div>
-
-              <div class="iconBx">
-                <ion-icon name="cash-outline"></ion-icon>
-              </div>
-            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Sender</th>
+                  <th>Message</th>
+                  <th>Receiver</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="messagesTable"></tbody>
+            </table>
           </div>
         </main>
       </div>
     </div>
 
     <!-- =========== Scripts =========  -->
-    <script src="js/base.js" type="module"></script>
-    <script src="js/index.js" type="module"></script>
+    <script src="js/base.js"></script>
+    <script src="js/messages.js"></script>
 
     <!-- ====== ionicons ======= -->
     <script

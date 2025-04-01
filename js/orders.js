@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pending: "En attente d'expédition",
     shipping: "En cours d'expédition",
     progressed: "En cours de livraison",
+    "progressed-returned": "Retour en cours",
     delivered: "Livré",
     checking: "En vérification",
     cancelled: "Annulé",
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     pending: "txt-yellow",
     shipping: "txt-light-blue",
     progressed: "txt-blue",
+    "progressed-returned": "txt-light-orange",
     delivered: "txt-green",
     checking: "txt-purple",
     cancelled: "txt-red",
@@ -38,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
     "report-delivered": "txt-dark-green",
     "dismiss-returned": "txt-light-gray",
     postponed: "txt-brown",
+  };
+
+  const statusOptions = {
+    pending: ["shipping", "dismiss-delivered"],
+    shipping: ["progressed"],
+    progressed: ["delivered", "report-delivered"],
+    "progressed-returned": ["returned", "report-returned"],
+    checking: ["progressed-returned", "dismiss-returned"],
+    "report-returned": ["progressed-returned"],
+    "report-delivered": ["progressed"],
   };
 
   let orders = ordersManager.getOrders();
@@ -151,20 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderOrders();
 
-  const statusOptions = {
-    pending: ["shipping", "dismiss-delivered"],
-    shipping: ["progressed"],
-    progressed: [
-      "delivered",
-      "returned",
-      "report-delivered",
-      "report-returned",
-    ],
-    checking: ["progressed", "dismiss-returned"],
-    "report-returned": ["progressed"],
-    "report-delivered": ["progressed"],
-  };
-
   function updateStatusSelect(status, newStatusSelect, delayInput) {
     newStatusSelect.innerHTML = `
       <option value="" disabled selected hidden>New Status</option>
@@ -174,8 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
           .join("") || ""
       }
     `;
-
-    delayInput.style.display = status.includes("report") ? "block" : "none";
   }
 
   function managerUpdateAll(status) {
@@ -187,8 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ".rejectReasonContainer"
       );
       const delayInput = selectBox.querySelector("input[type=number]");
+      const reasonInput = rejectReasonContainer.querySelector("textarea");
+      reasonInput.value = "";
+      delayInput.style.display = "none";
 
-      // Cache le sélecteur si le statut est un "final" (terminé)
       if (
         [
           "delivered",
@@ -201,16 +199,30 @@ document.addEventListener("DOMContentLoaded", function () {
         selectBox.style.display = "none";
       }
 
-      // Met à jour les options de statut en fonction du statut actuel
       updateStatusSelect(status, newStatusSelect, delayInput);
 
       newStatusSelect.addEventListener("change", (e) => {
         const value = e.target.value;
-        delayInput.style.display = value.includes("report") ? "block" : "none";
+        delayInput.style.display = ["progressed", "report", "checking"].some(
+          (status) => value.includes(status)
+        )
+          ? "block"
+          : "none";
         rejectReasonContainer.style.display = value.includes("dismiss")
           ? "block"
           : "none";
       });
+      rejectReasonContainer
+        .querySelector("select")
+        .addEventListener("change", function () {
+          if (this.value === "autre") {
+            reasonInput.style.display = "block";
+            reasonInput.focus();
+          } else {
+            reasonInput.style.display = "none";
+            reasonInput.value = this.value;
+          }
+        });
     } else {
       updateContent.style.display = "none";
     }
@@ -275,6 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (
         [
           "progressed",
+          "progressed-returned",
           "checking",
           "report-returned",
           "report-delivered",
@@ -352,7 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ".rejectReasonContainer"
       );
       const delayInput = product.querySelector("input[type=number]");
-
+      delayInput.style.display = "none";
       if (
         [
           "delivered",
@@ -365,64 +378,16 @@ document.addEventListener("DOMContentLoaded", function () {
         selectBox.style.display = "none";
       }
 
-      if (status === "pending") {
-        newStatusSelect.innerHTML = `
-          <option value="" disabled selected hidden>New Status</option>
-          <option value="shipping">Shipping</option>
-          <option value="dismiss-delivered">Dismiss-Delivered</option>
-        `;
-        delayInput.style.display = "none";
-      }
-
-      if (status === "shipping") {
-        newStatusSelect.innerHTML = `
-          <option value="" disabled selected hidden>New Status</option>
-          <option value="progressed">Progressed</option>
-        `;
-      }
-
-      if (status === "progressed") {
-        newStatusSelect.innerHTML = `
-          <option value="" disabled selected hidden>New Status</option>
-          <option value="delivered">Delivered</option>
-          <option value="returned">Returned</option>
-          <option value="report-delivered">Report Delivered</option>
-          <option value="report-returned">Report Returned</option>
-        `;
-      }
-
-      if (status === "checking") {
-        newStatusSelect.innerHTML = `
-          <option value="" disabled selected hidden>New Status</option>
-          <option value="progressed">Progressed</option>
-          <option value="dismiss-returned">Dismiss Returned</option>
-        `;
-      }
-
-      if (status === "report-returned") {
-        newStatusSelect.innerHTML = `
-          <option value="" disabled selected hidden>New Status</option>
-          <option value="progressed">Progressed</option>
-        `;
-      }
-
-      if (status === "report-delivered") {
-        newStatusSelect.innerHTML = `
-          <option value="" disabled selected hidden>New Status</option>
-          <option value="progressed">Progressed</option>
-        `;
-      }
+      updateStatusSelect(status, newStatusSelect, delayInput);
 
       newStatusSelect.addEventListener("change", (e) => {
         const value = e.target.value;
 
-        if (value === "returned") {
-          delayInput.style.display = "none";
-        }
-
-        if (value.includes("report")) {
-          delayInput.style.display = "block";
-        }
+        delayInput.style.display = ["progressed", "report", "checking"].some(
+          (status) => value.includes(status)
+        )
+          ? "block"
+          : "none";
 
         if (value.includes("dismiss")) {
           rejectReasonContainer.style.display = "block";
@@ -670,15 +635,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // ✅ Fonction pour récupérer la justification
   function getJustification(container) {
     if (container.style.display === "none") return null;
     const select = container.querySelector("select");
     const input = container.querySelector("textarea");
-    return select.value === "autre" ? input.value : select.value;
+    console.log(input.value);
+    return select.value === "autre"
+      ? input.value !== ""
+        ? input.value
+        : null
+      : select.value;
   }
 
-  // ✅ Fonction pour calculer les garanties
   function getGuarantees(status) {
     if (status !== "delivered") return [];
     return ordersManager
@@ -693,7 +661,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // ✅ Fonction pour créer les objets history
   function buildHistoryItems(
     status,
     updateAt,
@@ -712,7 +679,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
   }
 
-  // ✅ Fonction pour générer le message de confirmation
   function generateConfirmationMessage(historyItems, isAll = false) {
     let message = "Voulez-vous sauvegarder les modifications suivantes ?<br>";
 
@@ -745,4 +711,8 @@ function debounce(func, delay) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), delay);
   };
+}
+
+function closeAnyModal(button) {
+  button.closest(".modal").classList.remove("show");
 }

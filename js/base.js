@@ -622,15 +622,40 @@ filters.addCategory(tvSonConsole);
 filters.addCategory(securite);
 
 class User {
-  constructor(id, email, addresses = [], currentIndex) {
+  constructor(
+    id,
+    email,
+    addresses = [],
+    currentIndex,
+    role = "client",
+    total = 0
+  ) {
     this.id = id;
     this.email = email;
     this.addresses = addresses;
     this.currentIndex = currentIndex;
+    this.role = role;
+    this.total = total;
   }
 
-  addAdress(address) {
+  getAddresses() {
+    return this.addresses;
+  }
+
+  addAddress(address) {
     this.addresses.push(address);
+  }
+
+  removeAddress(index) {
+    this.addresses.splice(index, 1);
+  }
+
+  updateTotal(upPrice) {
+    this.total += upPrice;
+  }
+
+  updateAddress(index, address) {
+    this.addresses[index] = address;
   }
 }
 
@@ -651,6 +676,24 @@ class Address {
     this.region = region;
     this.district = district;
     this.street = street;
+  }
+}
+
+class UsersManager {
+  constructor(users = []) {
+    this.users = users;
+  }
+
+  addUser(user) {
+    this.users.push(user);
+  }
+
+  getUserById(id) {
+    return this.users.filter((u) => u.id === id);
+  }
+
+  getUsers() {
+    return this.users;
   }
 }
 
@@ -686,8 +729,94 @@ var user = new User(
       "Pharmacy Say"
     ),
   ],
-  0
+  0,
+  "admin",
+  100000000
 );
+
+var users = new UsersManager([
+  new User(
+    0,
+    "oumaroumamodou123@gmail.com",
+    [
+      new Address(
+        "Oumarou",
+        "Mamoudou",
+        "+227 98663248",
+        "+227 94464839",
+        "Niamey",
+        "Dar es salam",
+        "Pharmacy Say"
+      ),
+    ],
+    0,
+    "admin",
+    1000000
+  ),
+  new User(
+    1,
+    "loukmane@gmail.com",
+    [
+      new Address(
+        "Loukmane",
+        "Goumey",
+        "+227 98663248",
+        "+227 94464839",
+        "Niamey",
+        "Dar es salam",
+        "Pharmacy Say"
+      ),
+      new Address(
+        "Louk",
+        "Goumey",
+        "+227 98663248",
+        "+227 94464839",
+        "Niamey",
+        "Dar es salam",
+        "Pharmacy Say"
+      ),
+    ],
+    0,
+    "client",
+    2000000
+  ),
+  new User(
+    2,
+    "azima@gmail.com",
+    [
+      new Address(
+        "Azima",
+        "Goumey",
+        "+227 98663248",
+        "+227 94464839",
+        "Niamey",
+        "Dar es salam",
+        "Pharmacy Say"
+      ),
+    ],
+    0,
+    "client",
+    500000
+  ),
+  new User(
+    3,
+    "ben@gmail.com",
+    [
+      new Address(
+        "Ben Arfa",
+        "Balla",
+        "+227 98663248",
+        "+227 94464839",
+        "Niamey",
+        "Dar es salam",
+        "Pharmacy Say"
+      ),
+    ],
+    0,
+    "client",
+    25000
+  ),
+]);
 
 class Justification {
   constructor(quantity, justification, justificationImage = null) {
@@ -843,7 +972,7 @@ var ordersManager = new OrdersManager([
             Date.now()
           ),
           new orderItemHistory(
-            "progressed",
+            "progressed-returned",
             Date.now(),
             Date.now() + 3 * 24 * 60 * 60 * 1000
           ),
@@ -987,3 +1116,353 @@ var ordersManager = new OrdersManager([
     Date.now()
   ),
 ]);
+
+class Message {
+  constructor(id, sender, receiver, message, time, isRead) {
+    this.id = id;
+    this.sender = sender;
+    this.receiver = receiver;
+    this.message = message;
+    this.time = time;
+    this.isRead = isRead;
+  }
+}
+
+const messages = [
+  new Message(
+    0,
+    "Administrateur",
+    "all",
+    "Bienvenue sur notre boutique en ligne ! 🎉 Nous sommes ravis de vous accueillir. N'hésitez pas à parcourir nos produits et à nous contacter si vous avez des questions. Bonne navigation !",
+    Date.now(),
+    false
+  ),
+  new Message(
+    1,
+    "Support",
+    "all",
+    "Votre commande est en cours de traitement.",
+    Date.now(),
+    false
+  ),
+  new Message(
+    2,
+    "Livraison",
+    "all",
+    "Votre colis arrivera demain.",
+    Date.now(),
+    false
+  ),
+  new Message(
+    3,
+    "Administrateur",
+    "all",
+    "Bienvenue sur notre boutique en ligne ! 🎉 Nous sommes ravis de vous accueillir. N'hésitez pas à parcourir nos produits et à nous contacter si vous avez des questions. Bonne navigation !",
+    Date.now(),
+    true
+  ),
+  new Message(
+    4,
+    "demo@gmail.com",
+    "Administrateur",
+    "Je rencontre des problème quand je fais des commande",
+    Date.now(),
+    false
+  ),
+  new Message(
+    5,
+    "asma@gmail.com",
+    "Administrateur",
+    "Je rencontre des problème avec le site web",
+    Date.now(),
+    false
+  ),
+];
+
+class Blog {
+  constructor(id, name, paragraphs, important, date, comments, tag, reviews) {
+    this.id = id;
+    this.name = name;
+    this.paragraphs = paragraphs;
+    this.important = important;
+    this.date = date;
+    this.comments = comments;
+    this.tag = tag;
+    this.reviews = reviews;
+  }
+}
+
+const blogs = [
+  new Blog(
+    1,
+    "Music magnate headphones",
+
+    [
+      {
+        images: [
+          "//drou-electronics-store.myshopify.com/cdn/shop/articles/04_684500ea-e527-4171-8e1a-07c34d71c243_1024x1024.jpg?v=1674279180",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: [
+          "assets/images/banner/banner1.jpg",
+          "assets/images/banner/banner2.jpg",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+    ],
+    "Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt labo dolor magna aliqua. Ut enim ad minim veniam quis nostrud.",
+    "12/04/2024",
+    12,
+    "iphone",
+    [
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Blog(
+    2,
+    "MacBook Air labore et dolore",
+    [
+      {
+        images: [
+          "//drou-electronics-store.myshopify.com/cdn/shop/articles/b1_a4c8283b-edba-463f-bcb7-d2cf8f3ce46f_1024x1024.jpg?v=1674279118",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: [
+          "assets/images/banner/banner1.jpg",
+          "assets/images/banner/banner2.jpg",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+    ],
+    "Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt labo dolor magna aliqua. Ut enim ad minim veniam quis nostrud.",
+    "12/12/2024",
+    15,
+    "mac OS",
+    [
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Blog(
+    3,
+    "New iPhone 17 review",
+    [
+      {
+        images: [
+          "//drou-electronics-store.myshopify.com/cdn/shop/articles/b2_74c4b7c0-e805-4704-a4ab-4e68c8e4eae2_1024x1024.jpg?v=1674279232",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: [
+          "assets/images/banner/banner1.jpg",
+          "assets/images/banner/banner2.jpg",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+    ],
+    "Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt labo dolor magna aliqua. Ut enim ad minim veniam quis nostrud.",
+    "12/04/2024",
+    18,
+    "iphone",
+    [
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Blog(
+    4,
+    "MacBook Air 3 labore et dolore",
+    [
+      {
+        images: [
+          "//drou-electronics-store.myshopify.com/cdn/shop/articles/b1_3b00d3c2-2f39-45bc-8e1c-fa7af69a0a27_1024x1024.jpg?v=1674279260",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: [
+          "assets/images/banner/banner1.jpg",
+          "assets/images/banner/banner2.jpg",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+    ],
+    "Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt labo dolor magna aliqua. Ut enim ad minim veniam quis nostrud.",
+    "12/04/2024",
+    18,
+    "mac OS",
+    [
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+  new Blog(
+    4,
+    "MacBook Air 3 labore et dolore",
+    [
+      {
+        images: [
+          "//drou-electronics-store.myshopify.com/cdn/shop/articles/b1_3b00d3c2-2f39-45bc-8e1c-fa7af69a0a27_1024x1024.jpg?v=1674279260",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: ["assets/images/banner/banner1.jpg"],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: ["assets/images/banner/banner2.jpg"],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+      {
+        images: [
+          "assets/images/banner/banner1.jpg",
+          "assets/images/banner/banner2.jpg",
+        ],
+        description:
+          "Le 14 décembre 2023, par Nicolas Roux, l'iPhone 15 pro max est le nouveau smartphone le plus populaire de la marque Apple. Cet appareil est disponible à partir du 15 janvier 2024 et semble être le nouveau produit le plus récent de la gamme.",
+      },
+    ],
+    "Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt labo dolor magna aliqua. Ut enim ad minim veniam quis nostrud.",
+    "12/04/2024",
+    18,
+    "mac OS",
+    [
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "AB",
+        date: "12/04/2024",
+        rating: 5,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Issou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+      {
+        name: "Almou",
+        date: "12/04/2024",
+        rating: 4,
+        comment:
+          "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
+      },
+    ]
+  ),
+];

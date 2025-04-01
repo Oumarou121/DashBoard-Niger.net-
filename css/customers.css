@@ -1,0 +1,436 @@
+.btn-td {
+  display: flex !important;
+  gap: 20px;
+}
+
+table th:nth-child(5) {
+  text-align: center;
+}
+
+table td:nth-child(4) {
+  text-align: center;
+}
+
+/* ============================================================================ */
+.custom-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+#alertModal {
+  z-index: 1002;
+}
+
+.custom-modal.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 650px;
+  height: auto;
+  max-height: 90%;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-modal {
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.close-modal:hover {
+  color: var(--red);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.second-content {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  gap: 20px;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#delete-btn {
+  background-color: var(--red);
+}
+
+.modal-btn:hover {
+  background-color: #333 !important;
+}
+
+/* ====================================================================== */
+.form-group,
+.select-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.form-label {
+  padding-top: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.form-input {
+  position: relative;
+  background: #ebebeb;
+  border: 1px solid #ebebeb;
+  border-radius: 0;
+  height: 45px;
+  padding: 10px;
+  font-size: 14px;
+  color: #495057;
+  display: block;
+  line-height: 1.5;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+
+select {
+  cursor: pointer;
+}
+
+.form-input:focus,
+textarea:focus {
+  outline: none;
+  background: none;
+  border-color: var(--blue);
+}
+
+.form-address {
+  margin-bottom: 20px;
+}
+
+.column {
+  display: flex;
+  gap: 20px;
+}
+
+.column .form-group {
+  flex: 1;
+}
+
+@media (max-width: 767px) {
+  .column {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.setDefault input,
+.setDefault span {
+  cursor: pointer;
+}
+
+.setDefault {
+  margin: 10px 0;
+}
+
+.content button {
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 80%;
+  margin-top: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.content button:hover {
+  background: #333;
+}
+
+@media (min-width: 992px) {
+  .content button {
+    width: 50%;
+  }
+}
+
+.edit-address-button span:hover {
+  color: #e52e06;
+}
+
+.secondary-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.add-address {
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.add-address:hover {
+  color: var(--blue);
+}
+
+.address-item {
+  padding-top: 20px;
+}
+
+/* ===================================== */
+#user-addresses-content {
+  padding: 20px 0;
+}
+
+#address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.address-card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  border-radius: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.addressContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.address-card:hover {
+  background: #f1f1f1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.address-card input[type="radio"]:checked {
+  accent-color: #e52e06;
+}
+
+.address-info {
+  padding-right: 25px;
+}
+
+.address-info h4 {
+  font-size: 1em;
+  margin: 0;
+  color: #333;
+}
+
+.address-info p {
+  font-size: 0.9em;
+  color: #555;
+  margin: 5px 0;
+}
+
+@media (max-width: 600px) {
+  .address-card {
+    padding: 12px;
+  }
+}
+
+.options {
+  position: relative;
+  display: inline-block;
+}
+
+.option-btn {
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  padding: 10px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 120px;
+  overflow: hidden;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+
+.dropdown-menu button:hover {
+  background: #f5f5f5;
+}
+
+.address-card.active {
+  border-color: #e52e06;
+  background-color: #fff2f0c4;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: #f9f9f9;
+}
+
+.select-box {
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+#region-select,
+#region-select-edit {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+.btn-box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#submitAddress,
+#cancel,
+#deleteAddress,
+#cancel-delete {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submitAddress {
+  background-color: #333;
+  color: white;
+}
+
+#deleteAddress {
+  color: #fff;
+  background: #e52e06;
+}
+
+#cancel,
+#cancel-delete {
+  color: #e52e06;
+  background: none;
+  text-decoration: underline;
+}
+
+.uil-times:hover {
+  color: #e52e06;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+#cancel-save {
+  background-color: var(--red);
+  color: #fff;
+}
+
+#confirmModal button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+textarea {
+  resize: vertical;
+  padding: 10px 20px;
+  height: 200px;
+}

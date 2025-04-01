@@ -1,0 +1,160 @@
+.txt-primary {
+  color: var(--red);
+}
+
+.custom-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+#alertModal {
+  z-index: 1002;
+}
+
+.custom-modal.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 650px;
+  height: auto;
+  max-height: 90%;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-modal {
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.close-modal:hover {
+  color: var(--red);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.second-content {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  gap: 20px;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#delete-btn {
+  background-color: var(--red);
+}
+
+.modal-btn:hover {
+  background-color: #333 !important;
+}
+
+.form-group,
+.select-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.form-label {
+  padding-top: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+select {
+  cursor: pointer;
+}
+
+.form-input:focus,
+textarea:focus {
+  outline: none;
+  background: none;
+  border-color: var(--blue);
+}
+
+.form-input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: #f9f9f9;
+}
+
+textarea {
+  resize: vertical;
+  padding: 10px 20px;
+  height: 200px;
+}
+
+#cancel-save {
+  background-color: var(--red);
+  color: #fff;
+}
+
+#confirmModal button:hover {
+  background-color: #333;
+  color: #fff;
+}
