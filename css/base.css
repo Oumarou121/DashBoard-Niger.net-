@@ -646,3 +646,7 @@ table tr:nth-child(even) {
   transition: 0.3s;
   margin: 5px;
 }
+
+.uil-times {
+  font-size: 20px;
+}

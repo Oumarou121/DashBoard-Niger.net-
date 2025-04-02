@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <!-- <div id="alertModal" class="modal">
+    <div id="alertModal" class="modal">
       <div class="modal-content-confirm">
         <p id="alertMessage"></p>
         <button onclick="closeAnyModal(this)" id="closeAlert">OK</button>
@@ -47,56 +47,175 @@
         <button id="confirm-save">Oui</button>
         <button onclick="closeAnyModal(this)" id="cancel-save">Non</button>
       </div>
-    </div> -->
+    </div>
 
-    <!-- <div id="custom-modal" class="custom-modal">
+    <div id="paragraph-modal" class="modal">
+      <div class="modal-content">
+        <div class="section-title">
+          <h2>Add/Edit Paragraph</h2>
+          <i id="exit" onclick="closeAnyModal(this)" class="uil uil-times"></i>
+        </div>
+        <div class="form-blog">
+          <div class="blog-content">
+            <div class="imageContent">
+              <div class="image-section">
+                <div id="chooseMainImage" class="chooseMainImage">
+                  <i class="uil uil-upload"></i>
+                </div>
+                <input
+                  type="file"
+                  id="mainImage"
+                  name="mainImage"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <img
+                  id="mainImagePreview"
+                  src=""
+                  alt="Aperçu de l'image principale"
+                  style="display: none"
+                />
+              </div>
+              <div class="chooseSecondaryImages">
+                <input
+                  type="file"
+                  id="secondaryImages"
+                  accept="image/*"
+                  multiple
+                  style="display: none"
+                />
+                <button type="button" id="addSecondaryImage">
+                  Ajouter des images secondaires
+                </button>
+                <div
+                  class="secondary-images"
+                  id="secondaryImagesContainer"
+                ></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Enter your Description"
+              ></textarea>
+            </div>
+          </div>
+          <div class="btn-box">
+            <button onclick="closeAnyModal(this)" id="cancel" class="cancel">
+              Cancel
+            </button>
+            <button id="submitBlog" class="submit">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="comment-modal" class="modal">
+      <div class="modal-content">
+        <div class="section-title">
+          <h2>Add/Edit Comment</h2>
+          <i onclick="closeAnyModal(this)" class="uil uil-times"></i>
+        </div>
+        <div class="add-comment-content">
+          <div class="form-group">
+            <label class="form-label" for="name-comment">Name</label>
+            <input
+              type="text"
+              id="name-comment"
+              placeholder="Enter your Name"
+              class="form-input"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="comment-content">Comment</label>
+            <textarea
+              id="comment-content"
+              name="content-comment"
+              placeholder="Enter your Comment"
+              rows="3"
+              class="form-input"
+            ></textarea>
+          </div>
+          <div class="btn-box">
+            <button onclick="closeAnyModal(this)" class="cancel">Cancel</button>
+            <button id="submitComment" class="submit">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="custom-modal" class="custom-modal">
       <div class="modal-content">
         <form id="modal-form">
           <div class="first-content">
             <div class="header">
-              <h2>Message</h2>
+              <h2>Blog</h2>
               <button id="close-modal" class="close-modal">
                 <ion-icon name="close-outline"></ion-icon>
               </button>
             </div>
             <div class="content">
               <div class="primary-content">
-                <div id="sender-box" class="form-group">
-                  <label class="form-label" for="sender">Sender</label>
-                  <select name="sender" id="sender" class="form-input">
-                    <option value="Administrateur" selected>
-                      Administrateur
-                    </option>
-                    <option value="Support">Support</option>
-                    <option value="Livraison">Livraison</option>
-                  </select>
-                </div>
-                <div id="sender-box-view" class="form-group">
-                  <label class="form-label" for="sender-view">Sender</label>
+                <div class="form-group">
+                  <label class="form-label" for="name">Name</label>
                   <input
                     type="text"
-                    id="sender-view"
-                    placeholder="Sender"
+                    id="name"
+                    placeholder="Name"
                     class="form-input"
                   />
                 </div>
+                <div class="column">
+                  <div class="form-group">
+                    <label class="form-label" for="tag">Tag</label>
+                    <input
+                      type="text"
+                      id="tag"
+                      placeholder="Tag"
+                      class="form-input"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="date">Date</label>
+                    <input
+                      type="date"
+                      id="date"
+                      placeholder="Date"
+                      class="form-input"
+                    />
+                  </div>
+                </div>
                 <div class="form-group">
-                  <label class="form-label" for="receiver">Receiver</label>
+                  <label class="form-label" for="comments">Comments</label>
                   <input
-                    type="email"
-                    id="receiver"
-                    placeholder="Receiver"
+                    type="number"
+                    id="comments"
+                    placeholder="Comments"
                     class="form-input"
+                    readonly
                   />
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="message">Message</label>
+                  <label class="form-label" for="importants">Importants</label>
                   <textarea
-                    id="message"
-                    name="message"
+                    id="importants"
+                    name="importants"
                     placeholder="Enter your Message"
                   ></textarea>
                 </div>
+              </div>
+              <div class="secondary-content">
+                <div class="secondary-title">
+                  <h2 class="title">Blog Paragraph(s)</h2>
+                  <span id="add-paragraphs" class="add-paragraphs"
+                    >Add a New Paragraph</span
+                  >
+                </div>
+                <div
+                  id="add-paragraphs-content"
+                  class="add-paragraphs-content"
+                ></div>
               </div>
             </div>
           </div>
@@ -109,7 +228,31 @@
           </div>
         </form>
       </div>
-    </div> -->
+    </div>
+
+    <div id="custom-modal-comments" class="custom-modal">
+      <div class="modal-content">
+        <div class="first-content">
+          <div class="header">
+            <h2 id="comments-title">Comments</h2>
+            <button id="close-modal-comments" class="close-modal">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+          <div class="content">
+            <ul id="comments-content"></ul>
+          </div>
+        </div>
+        <div class="second-content">
+          <button type="submit" id="add-comments-btn" class="modal-btn">
+            Add Comment
+          </button>
+          <button type="submit" id="save-comments-btn" class="modal-btn">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div class="wrapper">
       <div class="container">
@@ -245,7 +388,7 @@
                   <th>ID</th>
                   <th>Name</th>
                   <th>Tag</th>
-                  <th>Reviews</th>
+                  <th>Comments</th>
                   <th>Actions</th>
                 </tr>
               </thead>

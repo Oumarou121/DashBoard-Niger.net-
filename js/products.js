@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <td>${category}</td>
     <td>${formatPrice(product.price)}</td>
     <td>${product.qty}</td>
-    <td>
+    <td class="btn-td">
         <button class="infos">Infos</button>
         <button class="reviews">Reviews</button>
     </td>
