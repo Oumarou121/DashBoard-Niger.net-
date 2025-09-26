@@ -9,10 +9,17 @@
     <link rel="stylesheet" href="css/products.css" />
 
     <!--============Icon Cdn==============-->
+
     <link
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
     />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
     <!--============Icon Cdn==============-->
   </head>
   <body>
@@ -118,17 +125,29 @@
                   <div class="column"></div>
                 </div>
 
+                <div class="input-box">
+                  <label for="price">Prix</label>
+                  <input
+                    type="number"
+                    id="price"
+                    name="productPrice"
+                    placeholder="Entrez le prix du produit"
+                    required
+                  />
+                </div>
+
                 <div class="column">
-                  <div class="input-box">
-                    <label for="price">Prix</label>
-                    <input
-                      type="number"
-                      id="price"
-                      name="productPrice"
-                      placeholder="Entrez le prix du produit"
-                      required
-                    />
+                  <div class="select-box">
+                    <label for="category-select">Type de réduction</label>
+                    <select name="reductionType" id="reductionType">
+                      <option value="" disabled selected hidden>
+                        Sélectionnez une type de réduction
+                      </option>
+                      <option value="no-percentage">No percentage</option>
+                      <option value="percentage">Percentage</option>
+                    </select>
                   </div>
+
                   <div class="input-box">
                     <label for="priceReduction">Réduction</label>
                     <input
@@ -200,6 +219,71 @@
       </div>
     </div>
 
+    <div id="custom-modal-comments" class="custom-modal">
+      <div class="modal-content">
+        <div class="first-content">
+          <div class="header">
+            <h2 id="comments-title">Reivews</h2>
+            <button id="close-modal-comments" class="close-modal">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+          <div class="content">
+            <ul id="reviews-content"></ul>
+          </div>
+        </div>
+        <div class="second-content">
+          <button type="submit" id="add-comments-btn" class="modal-btn">
+            Add Comment
+          </button>
+          <button type="submit" id="save-comments-btn" class="modal-btn">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="comment-modal" class="modal">
+      <div class="modal-content">
+        <div class="section-title">
+          <h2>Add/Edit Review</h2>
+          <i onclick="closeAnyModal(this)" class="uil uil-times"></i>
+        </div>
+        <div class="add-review-content">
+          <div class="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+          </div>
+          <div class="input-box">
+            <!-- <label class="form-label" for="name-comment">Name</label> -->
+            <input
+              type="text"
+              id="name-comment"
+              placeholder="Enter your Name"
+              class="form-input"
+            />
+          </div>
+          <div class="input-box">
+            <!-- <label class="form-label" for="comment-content">Comment</label> -->
+            <textarea
+              id="comment-content"
+              name="content-comment"
+              placeholder="Enter your Comment"
+              rows="3"
+              class="form-input"
+            ></textarea>
+          </div>
+          <div class="btn-box">
+            <button onclick="closeAnyModal(this)" class="cancel">Cancel</button>
+            <button id="submitComment" class="submit">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="wrapper">
       <div class="container">
         <nav class="navigation">
@@ -213,7 +297,7 @@
               </a>
             </li>
 
-            <li>
+            <li class="hovered">
               <a href="index.html">
                 <span class="icon">
                   <ion-icon name="home-outline"></ion-icon>
@@ -222,7 +306,16 @@
               </a>
             </li>
 
-            <li class="hovered">
+            <li>
+              <a href="configuration.html">
+                <span class="icon">
+                  <ion-icon name="layers-outline"></ion-icon>
+                </span>
+                <span class="title">Configuration Accueil</span>
+              </a>
+            </li>
+
+            <li>
               <a href="products.html">
                 <span class="icon">
                   <ion-icon name="server-outline"></ion-icon>
@@ -250,7 +343,7 @@
             </li>
 
             <li>
-              <a href="#">
+              <a href="analytics.html">
                 <span class="icon">
                   <ion-icon name="analytics-outline"></ion-icon>
                 </span>
@@ -277,11 +370,11 @@
             </li>
 
             <li>
-              <a href="#">
+              <a href="promotions.html">
                 <span class="icon">
-                  <ion-icon name="settings-outline"></ion-icon>
+                  <ion-icon name="pricetag-outline"></ion-icon>
                 </span>
-                <span class="title">Settings</span>
+                <span class="title">Promotions</span>
               </a>
             </li>
 

@@ -440,6 +440,15 @@ ol {
   border-radius: 12px;
 }
 
+.admin-dashboard1 {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
 .admin-dashboard h1 {
   text-align: center;
   margin-bottom: 30px;
@@ -649,4 +658,22 @@ table tr:nth-child(even) {
 
 .uil-times {
   font-size: 20px;
+}
+
+#confirmDelete {
+  background: #e74c3c;
+  color: white;
+}
+
+#confirmDelete:hover {
+  background: #c0392b;
+}
+
+#cancelDelete {
+  background: #bdc3c7;
+  color: black;
+}
+
+#cancelDelete:hover {
+  background: #95a5a6;
 }

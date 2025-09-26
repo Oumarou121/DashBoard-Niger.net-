@@ -43,6 +43,15 @@
             </li>
 
             <li>
+              <a href="configuration.html">
+                <span class="icon">
+                  <ion-icon name="layers-outline"></ion-icon>
+                </span>
+                <span class="title">Configuration Accueil</span>
+              </a>
+            </li>
+
+            <li>
               <a href="products.html">
                 <span class="icon">
                   <ion-icon name="server-outline"></ion-icon>
@@ -70,7 +79,7 @@
             </li>
 
             <li>
-              <a href="#">
+              <a href="analytics.html">
                 <span class="icon">
                   <ion-icon name="analytics-outline"></ion-icon>
                 </span>
@@ -97,11 +106,11 @@
             </li>
 
             <li>
-              <a href="#">
+              <a href="promotions.html">
                 <span class="icon">
-                  <ion-icon name="settings-outline"></ion-icon>
+                  <ion-icon name="pricetag-outline"></ion-icon>
                 </span>
-                <span class="title">Settings</span>
+                <span class="title">Promotions</span>
               </a>
             </li>
 
@@ -180,11 +189,37 @@
               </div>
             </div>
           </div>
+
+          <canvas id="salesChart"></canvas>
+          <table>
+            <tr>
+              <th>Statistique</th>
+              <th>Valeur</th>
+            </tr>
+            <tr>
+              <td>Total des ventes</td>
+              <td id="totalSales">...</td>
+            </tr>
+            <tr>
+              <td>Nombre de commandes</td>
+              <td id="totalOrders">...</td>
+            </tr>
+          </table>
+
+          <canvas id="ordersChart"></canvas>
+          <table>
+            <tr>
+              <th>Mois</th>
+              <th>Nombre de Commandes</th>
+            </tr>
+            <tbody id="ordersTable"></tbody>
+          </table>
         </main>
       </div>
     </div>
 
     <!-- =========== Scripts =========  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/base.js" type="module"></script>
     <script src="js/index.js" type="module"></script>
 

@@ -71,6 +71,7 @@ class Product {
     name,
     category,
     price,
+    reductionType = "no-percentage",
     priceReduction,
     images,
     specs,
@@ -82,12 +83,21 @@ class Product {
     this.name = name;
     this.category = category;
     this.price = price;
+    this.reductionType = reductionType; // "no-percentage" or "percentage",
     this.priceReduction = priceReduction;
     this.images = images;
     this.specs = specs;
     this.reviews = reviews;
     this.reference = this.generateReference();
     this.description = this.generateDescription();
+  }
+
+  getPrice() {
+    if (this.reductionType === "no-percentage") {
+      return formatPrice(this.price - this.priceReduction);
+    } else {
+      return formatPrice(this.price - (this.price * this.priceReduction) / 100);
+    }
   }
 
   generateReference() {
@@ -124,6 +134,7 @@ const products = [
     "Uphone lightning cable",
     "Téléphonie & Tablette/Accessoirs/Chargeurs & cablés",
     10000,
+    "no-percentage",
     0,
     [
       "//drou-electronics-store.myshopify.com/cdn/shop/products/p4_c46c6d30-4b9f-4971-96be-d28d9f0d5ee5_large.jpg?v=1674275311",
@@ -143,7 +154,7 @@ const products = [
       "Ecran Tactile": "Non",
       Réseau: "WiFi - Bluetooth",
       Caméra: "Webcam avec micro",
-      // Guarantee: "1 an",
+      Guarantee: "1 An",
       Couleur: "Noir",
       Availability: "Available In stock",
       Access: "oui",
@@ -179,7 +190,8 @@ const products = [
     "Smartphone Tecno Spark Go 2024",
     "Téléphonie & Tablette/Smartphone",
     65000,
-    5000,
+    "percentage",
+    10,
     [
       "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
       "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
@@ -234,6 +246,7 @@ const products = [
     "iPhone 14 pro max",
     "Téléphonie & Tablette/Smartphone",
     250000,
+    "no-percentage",
     45000,
 
     [
@@ -289,6 +302,7 @@ const products = [
     "Uphone lightning cable",
     "Téléphonie & Tablette/Accessoirs/Chargeurs & cablés",
     10000,
+    "no-percentage",
     0,
     [
       "//drou-electronics-store.myshopify.com/cdn/shop/products/p4_c46c6d30-4b9f-4971-96be-d28d9f0d5ee5_large.jpg?v=1674275311",
@@ -308,7 +322,7 @@ const products = [
       "Ecran Tactile": "Non",
       Réseau: "WiFi - Bluetooth",
       Caméra: "Webcam avec micro",
-      Guarantee: "1 an",
+      Guarantee: "1 An",
       Couleur: "Noir",
       Availability: "Available In stock",
       Access: "oui",
@@ -344,6 +358,7 @@ const products = [
     "Smartphone Tecno Spark Go 2024",
     "Téléphonie & Tablette/Smartphone",
     65000,
+    "no-percentage",
     5000,
     [
       "https://www.tunisianet.com.tn/382924-large/smartphone-tecno-spark-go-2024-2-go-64-go-blanc.jpg",
@@ -399,7 +414,8 @@ const products = [
     "iPhone 14 pro max",
     "Téléphonie & Tablette/Smartphone",
     250000,
-    45000,
+    "percentage",
+    5,
 
     [
       "https://drou-electronics-store.myshopify.com/cdn/shop/products/p7_36d931d4-1ef2-4c82-9a65-80426fb77f21_1024x1024.jpg?v=1674275335",
@@ -546,7 +562,7 @@ Iaccessoirs.addSubCategory(new SubCategory("Claviers"));
 //Telephonie & Tablette
 const telephonieTablette = new Category("Téléphonie & Tablette");
 const Taccessoirs = new SubCategory("Accessoirs");
-telephonieTablette.addOption(new Option("Garantie", ["1ans", "2ans"]));
+telephonieTablette.addOption(new Option("Garantee", ["1ans", "2ans"]));
 telephonieTablette.addOption(new Option("Couleur", ["Noir", "Rouge", "Vert"]));
 telephonieTablette.addSubCategory(new SubCategory("Telephone Portable"));
 const smartphone = new SubCategory("Smartphone");
@@ -1194,7 +1210,7 @@ class Blog {
 
 const blogs = [
   new Blog(
-    1,
+    0,
     "Music magnate headphones",
 
     [
@@ -1243,7 +1259,7 @@ const blogs = [
     ]
   ),
   new Blog(
-    2,
+    1,
     "MacBook Air labore et dolore",
     [
       {
@@ -1291,7 +1307,7 @@ const blogs = [
     ]
   ),
   new Blog(
-    3,
+    2,
     "New iPhone 17 review",
     [
       {
@@ -1339,7 +1355,7 @@ const blogs = [
     ]
   ),
   new Blog(
-    4,
+    3,
     "MacBook Air 3 labore et dolore",
     [
       {
@@ -1422,42 +1438,42 @@ const blogs = [
     "mac OS",
     [
       {
-        name: "AB",
+        name: "AB1",
         date: "12/04/2024",
         rating: 5,
         comment:
           "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
       },
       {
-        name: "Issou",
+        name: "Issou1",
         date: "12/04/2024",
         rating: 4,
         comment:
           "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
       },
       {
-        name: "Almou",
+        name: "Almou1",
         date: "12/04/2024",
         rating: 4,
         comment:
           "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
       },
       {
-        name: "AB",
+        name: "AB2",
         date: "12/04/2024",
         rating: 5,
         comment:
           "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
       },
       {
-        name: "Issou",
+        name: "Issou2",
         date: "12/04/2024",
         rating: 4,
         comment:
           "Si vous souhaitez dès maintenant un téléphone fiable et performant, l'iPhone 15 continue d'être un choix parfait. Si vous souhaitez une option plus avancée et à long terme, vous devriez peut-être envisager d'acheter l'iPhone 16.",
       },
       {
-        name: "Almou",
+        name: "Almou2",
         date: "12/04/2024",
         rating: 4,
         comment:
@@ -1465,4 +1481,57 @@ const blogs = [
       },
     ]
   ),
+];
+
+// ==========================================================
+
+class Hero {
+  constructor(id, title, subtitle, description, image, buttonText, buttonLink) {
+    this.id = id;
+    this.title = title;
+    this.subtitle = subtitle;
+    (this.description = description), (this.image = image);
+    this.buttonText = buttonText;
+    this.buttonLink = buttonLink;
+  }
+}
+
+const heroes = [
+  new Hero(
+    0,
+    "SALE UP TO 30% OFF",
+    "Apple Watch Series",
+    "Feature packed at a better value than ever Powerful sensors to monitor your fitness",
+    "assets/images/h1.jpg",
+    "Shop Now",
+    ""
+  ),
+  new Hero(
+    1,
+    "New arrivals collection",
+    "iPhone Accessories",
+    "Snap on a case, wallet, wireless charger battery pack all accessories you’re looking",
+    "assets/images/h2.jpg",
+    "Voir les offres",
+    "#offers"
+  ),
+];
+
+class TrendingCategory {
+  constructor(id, name, image, href) {
+    this.id = id;
+    this.name = name;
+    this.image = image;
+    this.href = href;
+  }
+}
+
+const trendingCategories = [
+  new TrendingCategory(0, "Watch", "assets/images/categories/1.jpg", ""),
+  new TrendingCategory(1, "iPhone", "assets/images/categories/2.jpg", ""),
+  new TrendingCategory(2, "Mini speakers", "assets/images/categories/3.jpg", ""),
+  new TrendingCategory(3, "Tablets", "assets/images/categories/4.jpg", ""),
+  new TrendingCategory(4, "Headphones", "assets/images/categories/5.jpg", ""),
+  new TrendingCategory(5, "Laptop", "assets/images/categories/6.jpg", ""),
+  new TrendingCategory(6, "Accessories", "assets/images/categories/7.jpg", ""),
 ];

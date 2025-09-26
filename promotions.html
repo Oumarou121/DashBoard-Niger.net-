@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DashBoard - Customers</title>
+    <title>DashBoard - Promotions</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/messages.css" />
+    <link rel="stylesheet" href="css/promotions.css" />
 
     <!--============Icon Cdn==============-->
 
@@ -21,6 +21,14 @@
     />
 
     <!--============Icon Cdn==============-->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/ionicons@7.2.1/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/ionicons@7.2.1/dist/ionicons/ionicons.js"
+    ></script>
   </head>
   <body>
     <!-- ============Preloader============ -->
@@ -31,83 +39,6 @@
           <div class="object" id="object_two"></div>
           <div class="object" id="object_three"></div>
         </div>
-      </div>
-    </div>
-
-    <div id="alertModal" class="modal">
-      <div class="modal-content-confirm">
-        <p id="alertMessage"></p>
-        <button onclick="closeAnyModal(this)" id="closeAlert">OK</button>
-      </div>
-    </div>
-
-    <div id="confirmModal" class="modal">
-      <div class="modal-content-confirm">
-        <p id="p-confirm"></p>
-        <button id="confirm-save">Oui</button>
-        <button onclick="closeAnyModal(this)" id="cancel-save">Non</button>
-      </div>
-    </div>
-
-    <div id="custom-modal" class="custom-modal">
-      <div class="modal-content">
-        <form id="modal-form">
-          <div class="first-content">
-            <div class="header">
-              <h2>Message</h2>
-              <button id="close-modal" class="close-modal">
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-            </div>
-            <div class="content">
-              <div class="primary-content">
-                <div id="sender-box" class="form-group">
-                  <label class="form-label" for="sender">Sender</label>
-                  <select name="sender" id="sender" class="form-input">
-                    <option value="Administrateur" selected>
-                      Administrateur
-                    </option>
-                    <option value="Support">Support</option>
-                    <option value="Livraison">Livraison</option>
-                  </select>
-                </div>
-                <div id="sender-box-view" class="form-group">
-                  <label class="form-label" for="sender-view">Sender</label>
-                  <input
-                    type="text"
-                    id="sender-view"
-                    placeholder="Sender"
-                    class="form-input"
-                  />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="receiver">Receiver</label>
-                  <input
-                    type="email"
-                    id="receiver"
-                    placeholder="Receiver"
-                    class="form-input"
-                  />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Enter your Message"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="second-content">
-            <button type="submit" id="add-btn" class="modal-btn">Add</button>
-            <button type="submit" id="delete-btn" class="modal-btn">
-              Delete
-            </button>
-            <button type="submit" id="save-btn" class="modal-btn">Save</button>
-          </div>
-        </form>
       </div>
     </div>
 
@@ -234,31 +165,59 @@
           </div>
 
           <div class="admin-dashboard">
-            <h1>Messages Managers</h1>
+            <h1>Promotions Actuelles</h1>
 
             <div class="table-actions">
               <input
                 type="text"
                 id="search"
                 class="search"
-                placeholder="Search messages..."
+                placeholder="Search promotions..."
               />
               <button id="open-modal">
-                <i class="fas fa-plus"></i> Add New Message
+                <i class="fas fa-plus"></i> Add New promotions
               </button>
             </div>
 
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Sender</th>
-                  <th>Message</th>
-                  <th>Receiver</th>
-                  <th>Actions</th>
+                  <th>Nom</th>
+                  <th>Réduction</th>
+                  <th>Produits</th>
+                  <th>Période</th>
+                  <th>Statut</th>
                 </tr>
               </thead>
-              <tbody id="messagesTable"></tbody>
+              <tbody id="promotionsTable"></tbody>
+            </table>
+          </div>
+
+          <div class="admin-dashboard">
+            <h1>Codes Promo</h1>
+
+            <div class="table-actions">
+              <input
+                type="text"
+                id="search"
+                class="search"
+                placeholder="Search code promo..."
+              />
+              <button id="open-modal">
+                <i class="fas fa-plus"></i> Add New code promo
+              </button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Réduction</th>
+                  <th>Conditions</th>
+                  <th>Expiration</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="promoCodesTable"></tbody>
             </table>
           </div>
         </main>
@@ -267,7 +226,7 @@
 
     <!-- =========== Scripts =========  -->
     <script src="js/base.js"></script>
-    <script src="js/messages.js"></script>
+    <script src="js/promotions.js"></script>
 
     <!-- ====== ionicons ======= -->
     <script

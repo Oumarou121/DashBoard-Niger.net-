@@ -12,12 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
     "#additional-selects-container .column"
   );
   const specsContent = document.getElementById("specs-content");
-  const confirmModal = document.getElementById("confirmModal");
-  const confirmDeleteBtn = document.getElementById("confirmDelete");
+  ccœ
   const cancelDeleteBtn = document.getElementById("cancelDelete");
   const mainImagePreview = document.getElementById("mainImagePreview");
   const chooseMainImage = document.getElementById("chooseMainImage");
   const mainImage = document.getElementById("mainImage");
+  const modalComments = document.getElementById("custom-modal-comments");
+  const modalComment = document.getElementById("comment-modal");
+  const commentsContent = document.getElementById("reviews-content");
   var productIndex = null;
   let selectedFiles = [];
 
@@ -43,6 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
     row.querySelector(".infos").addEventListener("click", () => {
       openModal(product.id);
     });
+
+    row.querySelector(".reviews").addEventListener("click", () => {
+      openModalComments(product.id);
+    });
     productTable.appendChild(row);
   });
 
@@ -65,6 +71,120 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  function openModalComment(reviews, review) {
+    const nameCommentInput = document.getElementById("name-comment");
+    const contentCommentInput = document.getElementById("comment-content");
+    const stars = document.querySelectorAll(".star");
+    let selectedRating = 0;
+    modalComment.classList.add("show");
+    if (review === null) {
+      nameCommentInput.value = "";
+      contentCommentInput.value = "";
+      stars.forEach((s) => {
+        s.classList.remove("active");
+      });
+    } else {
+      stars.forEach((s) => {
+        s.classList.remove("active");
+      });
+      nameCommentInput.value = review.name;
+      contentCommentInput.value = review.comment;
+      stars.forEach((s, index) => {
+        if (index <= review.rating - 1) {
+          s.classList.add("active");
+        }
+      });
+    }
+
+    stars.forEach((star) => {
+      star.addEventListener("click", function () {
+        selectedRating = parseInt(this.getAttribute("data-value"));
+        stars.forEach((s, index) => {
+          s.classList.toggle("active", index < selectedRating);
+        });
+      });
+    });
+  }
+
+  function openModalComments(index) {
+    commentsContent.innerHTML = "";
+    productIndex = index;
+    const product = products.find((b) => b.id === productIndex);
+    const reviews = product.reviews;
+    modalComments.classList.add("show");
+    reviews.forEach((review) => {
+      const comment = document.createElement("li");
+      comment.classList.add("review");
+      let rating = Math.max(0, Math.min(5, review.rating));
+      comment.innerHTML = `
+         <div class="review-header">
+            <div class="header-left">
+              <span class="user-name">${review.name}</span>
+              <span class="date">${review.date}</span>
+            </div>
+            <div class="header-right">
+              ${'<span class="star-bars active">★</span>'.repeat(rating)}
+              ${'<span class="star-bars">★</span>'.repeat(5 - rating)}
+            </div>
+          </div>
+          <p>${review.comment}</p>
+        <div class="options">
+          <i class="fas fa-ellipsis-v option-btn"></i>
+          <div class="dropdown-menu">
+            <button class="edit-btn">Modifier</button>
+            <button class="delete-btn">Supprimer</button>
+          </div>
+        </div>
+      `;
+
+      comment.querySelector(".option-btn").addEventListener("click", () => {
+        document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+          menu.style.display = "none";
+        });
+        comment.querySelector(".dropdown-menu").style.display = "block";
+      });
+
+      comment.querySelector(".edit-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        openModalComment(reviews, review);
+      });
+
+      comment.querySelector(".delete-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        comment.remove();
+      });
+
+      commentsContent.appendChild(comment);
+    });
+
+    document
+      .getElementById("add-comments-btn")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        openModalComment(reviews, null);
+      });
+  }
+
+  function closeModalComments() {
+    blogsIndex = null;
+    modalComments.classList.remove("show");
+  }
+
+  document
+    .getElementById("close-modal-comments")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      closeModalComments();
+    });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".options")) {
+      document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+        menu.style.display = "none";
+      });
+    }
+  });
 
   function showAlert(message) {
     document.getElementById("alertMessage").textContent = message;
@@ -476,6 +596,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("productName").value = product.name;
     document.getElementById("price").value = product.price;
+    document.getElementById("reductionType").value = product.reductionType;
     document.getElementById("priceReduction").value = product.priceReduction;
     document.getElementById("sales").value = product.sales;
     document.getElementById("qty").value = product.qty;
@@ -684,6 +805,7 @@ document.addEventListener("DOMContentLoaded", function () {
           images[index + 1] = imageUrl;
         }
       });
+    const reductionType = document.getElementById("reductionType").value;
 
     const product = new Product(
       productIndex,
@@ -692,6 +814,7 @@ document.addEventListener("DOMContentLoaded", function () {
       name,
       category,
       document.getElementById("price").value,
+      reductionType,
       document.getElementById("priceReduction").value,
       images,
       foundSpecs(),
@@ -720,3 +843,7 @@ document.addEventListener("DOMContentLoaded", function () {
     otherSpecs.appendChild(column);
   });
 });
+
+function closeAnyModal(button) {
+  button.closest(".modal").classList.remove("show");
+}

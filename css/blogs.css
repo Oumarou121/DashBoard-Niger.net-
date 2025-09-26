@@ -507,7 +507,7 @@ textarea {
 
 #custom-modal-comments .content {
   padding: 15px;
-  max-height: 300px;
+  height: 400px;
   overflow-y: auto;
 }
 
@@ -578,9 +578,17 @@ textarea {
   background: #0056b3;
 }
 
+#comment-modal .modal-content {
+  max-width: 500px;
+}
+
 @media (max-width: 500px) {
   .modal-content {
     width: 95%;
+  }
+
+  #comment-modal .modal-content {
+    max-width: 80%;
   }
 
   .comment {

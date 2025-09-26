@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DashBoard - Customers</title>
+    <title>DashBoard - Products</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/messages.css" />
+    <link rel="stylesheet" href="css/analytics.css" />
 
     <!--============Icon Cdn==============-->
 
@@ -31,83 +31,6 @@
           <div class="object" id="object_two"></div>
           <div class="object" id="object_three"></div>
         </div>
-      </div>
-    </div>
-
-    <div id="alertModal" class="modal">
-      <div class="modal-content-confirm">
-        <p id="alertMessage"></p>
-        <button onclick="closeAnyModal(this)" id="closeAlert">OK</button>
-      </div>
-    </div>
-
-    <div id="confirmModal" class="modal">
-      <div class="modal-content-confirm">
-        <p id="p-confirm"></p>
-        <button id="confirm-save">Oui</button>
-        <button onclick="closeAnyModal(this)" id="cancel-save">Non</button>
-      </div>
-    </div>
-
-    <div id="custom-modal" class="custom-modal">
-      <div class="modal-content">
-        <form id="modal-form">
-          <div class="first-content">
-            <div class="header">
-              <h2>Message</h2>
-              <button id="close-modal" class="close-modal">
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-            </div>
-            <div class="content">
-              <div class="primary-content">
-                <div id="sender-box" class="form-group">
-                  <label class="form-label" for="sender">Sender</label>
-                  <select name="sender" id="sender" class="form-input">
-                    <option value="Administrateur" selected>
-                      Administrateur
-                    </option>
-                    <option value="Support">Support</option>
-                    <option value="Livraison">Livraison</option>
-                  </select>
-                </div>
-                <div id="sender-box-view" class="form-group">
-                  <label class="form-label" for="sender-view">Sender</label>
-                  <input
-                    type="text"
-                    id="sender-view"
-                    placeholder="Sender"
-                    class="form-input"
-                  />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="receiver">Receiver</label>
-                  <input
-                    type="email"
-                    id="receiver"
-                    placeholder="Receiver"
-                    class="form-input"
-                  />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Enter your Message"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="second-content">
-            <button type="submit" id="add-btn" class="modal-btn">Add</button>
-            <button type="submit" id="delete-btn" class="modal-btn">
-              Delete
-            </button>
-            <button type="submit" id="save-btn" class="modal-btn">Save</button>
-          </div>
-        </form>
       </div>
     </div>
 
@@ -234,17 +157,17 @@
           </div>
 
           <div class="admin-dashboard">
-            <h1>Messages Managers</h1>
+            <!-- <h1>Products Managers</h1>
 
             <div class="table-actions">
               <input
                 type="text"
                 id="search"
                 class="search"
-                placeholder="Search messages..."
+                placeholder="Search products..."
               />
               <button id="open-modal">
-                <i class="fas fa-plus"></i> Add New Message
+                <i class="fas fa-plus"></i> Add New Product
               </button>
             </div>
 
@@ -252,13 +175,48 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Sender</th>
-                  <th>Message</th>
-                  <th>Receiver</th>
+                  <th>Sales</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price (FCFA)</th>
+                  <th>Stock</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody id="messagesTable"></tbody>
+              <tbody id="productTable"></tbody>
+            </table> -->
+            <h2>Tableau de Bord - Analytics</h2>
+
+            <!-- Statistiques Générales -->
+            <div class="stats">
+              <div class="stat-card">
+                <h3>Commandes Totales</h3>
+                <p id="totalOrders">0</p>
+              </div>
+              <div class="stat-card">
+                <h3>Nombre de Clients</h3>
+                <p id="totalCustomers">0</p>
+              </div>
+              <div class="stat-card">
+                <h3>Revenu Total (€)</h3>
+                <p id="totalRevenue">0</p>
+              </div>
+            </div>
+
+            <!-- Graphique des Ventes -->
+            <h3>Ventes Mensuelles</h3>
+            <canvas id="salesChart"></canvas>
+
+            <!-- Top Produits -->
+            <h3>Top 5 Produits Vendus</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Quantité Vendue</th>
+                </tr>
+              </thead>
+              <tbody id="topProductsTable"></tbody>
             </table>
           </div>
         </main>
@@ -267,7 +225,7 @@
 
     <!-- =========== Scripts =========  -->
     <script src="js/base.js"></script>
-    <script src="js/messages.js"></script>
+    <script src="js/analytics.js"></script>
 
     <!-- ====== ionicons ======= -->
     <script
